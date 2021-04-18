@@ -40,7 +40,7 @@ public class VillageRepositoryImpl implements VillageRepository {
             Connection connection = ConnectToDataBase.getConnection();
             PreparedStatement pstmt = null;
 
-            pstmt = connection.prepareStatement("UPDATE  village SET name = ? where id = ?");
+            pstmt = connection.prepareStatement("UPDATE  village SET village_name = ? where id = ?");
 
             pstmt.setString(1, village.getVillageName());
             pstmt.setInt(2, village.getId());
@@ -95,30 +95,7 @@ public class VillageRepositoryImpl implements VillageRepository {
     }
 
     @Override
-    public VillageModel getByVillageName(String villageName) {
-        VillageModel village = null;
-        try {
-            Connection connection = ConnectToDataBase.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM village WHERE village_name = ?");
-            preparedStatement.setString(1, villageName);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                village = mapModel(resultSet);
-            }
-
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-
-        return village;
-    }
-
-    @Override
-    public List<VillageModel> getVillageAll() {
+    public List<VillageModel> getAll() {
         List<VillageModel> villageModels = new LinkedList<>();
         try {
             Connection connection = ConnectToDataBase.getConnection();

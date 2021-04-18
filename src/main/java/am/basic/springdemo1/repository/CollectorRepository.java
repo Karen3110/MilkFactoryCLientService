@@ -15,7 +15,7 @@ public interface CollectorRepository {
 
     CollectorModel getByNameSurname(String name, String surname);
 
-    List<CollectorModel> getCollectorAll();
+    List<CollectorModel> getAll();
     List<CollectorModel> getCollectorByVillageID(int id);
 
 

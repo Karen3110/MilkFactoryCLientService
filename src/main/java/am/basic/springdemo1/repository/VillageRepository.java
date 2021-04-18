@@ -14,8 +14,6 @@ public interface VillageRepository {
 
     VillageModel getByID(int id);
 
-    VillageModel getByVillageName(String villageName);
-
-    List<VillageModel> getVillageAll();
+    List<VillageModel> getAll();
 }
 

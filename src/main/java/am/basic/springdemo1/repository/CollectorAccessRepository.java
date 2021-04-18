@@ -3,6 +3,8 @@ package am.basic.springdemo1.repository;
 
 import am.basic.springdemo1.model.CollectorAccessModel;
 
+import java.util.List;
+
 public interface CollectorAccessRepository {
 
     void add(CollectorAccessModel collectorAccessModel);
@@ -14,4 +16,6 @@ public interface CollectorAccessRepository {
     CollectorAccessModel getByID(int id);
 
     CollectorAccessModel getByUsernamePassword(String username, String password);
+
+    List<CollectorAccessModel> getAll();
 }

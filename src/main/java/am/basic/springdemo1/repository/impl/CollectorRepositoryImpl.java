@@ -39,7 +39,7 @@ public class CollectorRepositoryImpl implements CollectorRepository {
     public void update(CollectorModel collector) {
         try {
             Connection connection = ConnectToDataBase.getConnection();
-            PreparedStatement pstmt = connection.prepareStatement("UPDATE user set name = ? ,surname = ?, village_id = ?where id = ? ");
+            PreparedStatement pstmt = connection.prepareStatement("UPDATE collector set name = ? ,surname = ?, village_id = ? where id = ? ");
 
             pstmt.setString(1, collector.getName());
             pstmt.setString(2, collector.getSurname());
@@ -120,7 +120,7 @@ public class CollectorRepositoryImpl implements CollectorRepository {
     }
 
     @Override
-    public List<CollectorModel> getCollectorAll() {
+    public List<CollectorModel> getAll() {
         List<CollectorModel> collectors = new LinkedList<>();
         try {
             Connection connection = ConnectToDataBase.getConnection();
@@ -137,13 +137,14 @@ public class CollectorRepositoryImpl implements CollectorRepository {
         }
         return collectors;
     }
+
     @Override
     public List<CollectorModel> getCollectorByVillageID(int id) {
         List<CollectorModel> collectors = new LinkedList<>();
         try {
             Connection connection = ConnectToDataBase.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM collector WHERE village_id =?");
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 collectors.add(mapModel(resultSet));
@@ -156,7 +157,6 @@ public class CollectorRepositoryImpl implements CollectorRepository {
         }
         return collectors;
     }
-
 
 
     CollectorModel mapModel(ResultSet resultSet) throws SQLException {

@@ -12,6 +12,8 @@ public interface FarmerRepository {
 
     void delete(int id);
 
+    List<FarmerModel> getAll();
+
     FarmerModel getByID(int id);
 
     FarmerModel getByNameSurname(String name, String surname, int villageID);

@@ -6,10 +6,7 @@ import am.basic.springdemo1.model.Dto.SignInDto;
 import am.basic.springdemo1.model.Dto.ToCountDataDto;
 import am.basic.springdemo1.model.Dto.ToSaveDto;
 import am.basic.springdemo1.model.exception.NotFoundException;
-import am.basic.springdemo1.repository.CollectorRepository;
-import am.basic.springdemo1.repository.EverydayMilkRepository;
-import am.basic.springdemo1.repository.FarmerRepository;
-import am.basic.springdemo1.repository.VillageRepository;
+import am.basic.springdemo1.repository.*;
 import am.basic.springdemo1.repository.impl.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,14 +32,14 @@ public class AdminController {
             System.out.println(admin);
             return new ResponseEntity(admin, HttpStatus.OK);
         } catch (NotFoundException ex) {
-            return ResponseEntity.status(404).body(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         } catch (RuntimeException throwable) {
-            return ResponseEntity.status(500).body("Internal server error");
+            return ResponseEntity.status(HttpStatus.OK).body("Internal server error");
         }
     }
 
     @PostMapping("/logOut")
-    public ResponseEntity logOut(@RequestBody SignInDto signInDto) {
+    public ResponseEntity logOut() {
         //
         return null;
     }
@@ -50,16 +47,17 @@ public class AdminController {
     @GetMapping("/counting")
     public ResponseEntity getCountingVillages() {
         VillageRepository villageRepository = new VillageRepositoryImpl();
-        return ResponseEntity.status(500).body(villageRepository.getVillageAll());
+        return ResponseEntity.ok(villageRepository.getAll());
     }
 
     //village select
-    @PostMapping("/counting/village")
-    public ResponseEntity getCountingCollectors(@RequestBody int id) {
+    @PostMapping("/counting/village/{villageID}")
+    public ResponseEntity getCountingCollectors(@PathVariable int villageID) {
 
         CollectorRepository collectorRepository = new CollectorRepositoryImpl();
-        List<CollectorModel> collectorModels = collectorRepository.getCollectorByVillageID(id);
-        return ResponseEntity.status(500).body(collectorModels);
+        List<CollectorModel> collectorModels = collectorRepository.getCollectorByVillageID(villageID);
+
+        return ResponseEntity.ok(collectorModels);
     }
 
     // collector select
@@ -67,9 +65,9 @@ public class AdminController {
     public ResponseEntity getCountingFarmers(@RequestBody CountingFarmerDto countingFarmerDto) {
 
         FarmerRepository farmerRepository = new FarmerRepositoryImpl();
-
         List<FarmerModel> farmerModels = farmerRepository.getFarmersByCollectorIDAndVillageID(countingFarmerDto.getCollectorID(), countingFarmerDto.getVillageID());
-        return ResponseEntity.status(500).body(farmerModels);
+
+        return ResponseEntity.ok(farmerModels);
     }
 
     // farmer select date select and  submit
@@ -79,10 +77,12 @@ public class AdminController {
         EverydayMilkRepository everydayMilkRepository = new EverydayMilkRepositoryImpl();
         FarmerRepository farmerRepository = new FarmerRepositoryImpl();
         CollectorRepository collectorRepository = new CollectorRepositoryImpl();
+        VillageRepository villageRepository = new VillageRepositoryImpl();
 
         List<EveryDayMilkModel> data = everydayMilkRepository.getFarmerListBeginEndDate(countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
         FarmerModel farmer = farmerRepository.getByID(countDataDto.getFarmerID());
         CollectorModel collector = collectorRepository.getByID(countDataDto.getCollectorID());
+        VillageModel village = villageRepository.getByID(countDataDto.getVillageID());
         String start = countDataDto.getStart();
         String end = countDataDto.getEnd();
 
@@ -92,7 +92,7 @@ public class AdminController {
         respData.put("collector", collector);
         respData.put("start", start);
         respData.put("end", end);
-
+        respData.put("village", village);
 
         return ResponseEntity.status(500).body(respData);
     }
@@ -102,7 +102,6 @@ public class AdminController {
 
         EverydayMilkRepository everydayMilkRepository = new EverydayMilkRepositoryImpl();
         everydayMilkRepository.calculateMilkBeginEnd(countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd(), true);
-
 
         return ResponseEntity.status(200).build();
     }
@@ -116,6 +115,7 @@ public class AdminController {
         return ResponseEntity.status(200).build();
     }
 
+    // after editing data
     @PostMapping("/counting/save")
     public ResponseEntity saveEditedData(@RequestBody ToSaveDto toSaveDto) {
         EverydayMilkRepository everydayMilkRepository = new EverydayMilkRepositoryImpl();
@@ -130,6 +130,54 @@ public class AdminController {
     public ResponseEntity printData() {
         return null;
     }
+
+
+    @GetMapping("/update")
+    public ResponseEntity getVillageFarmerCollectorData() {
+
+        CollectorRepository collectorRepository = new CollectorRepositoryImpl();
+        CollectorAccessRepository collectorAccessRepository = new CollectorAccessRepositoryImpl();
+        VillageRepository villageRepository = new VillageRepositoryImpl();
+        FarmerRepository farmerRepository = new FarmerRepositoryImpl();
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("farmers", farmerRepository.getAll());
+        data.put("collectors", collectorRepository.getAll());
+        data.put("villages", villageRepository.getAll());
+        data.put("collectorAccaunts", collectorAccessRepository.getAll());
+
+
+        return ResponseEntity.ok(data);
+    }
+
+    @PostMapping("/update/update/farmer")
+    public ResponseEntity updateFarmer(@RequestBody FarmerModel farmer) {
+        FarmerRepository farmerRepository = new FarmerRepositoryImpl();
+        farmerRepository.update(farmer);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/update/update/village")
+    public ResponseEntity updateVillage(@RequestBody VillageModel village) {
+        VillageRepository villageRepository = new VillageRepositoryImpl();
+        villageRepository.update(village);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/update/update/collector")
+    public ResponseEntity updateVillage(@RequestBody CollectorModel collector) {
+        CollectorRepository collectorRepository = new CollectorRepositoryImpl();
+        collectorRepository.update(collector);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/update/update/collector-account")
+    public ResponseEntity updateVillage(@RequestBody CollectorAccessModel collectorAccessModel) {
+        CollectorAccessRepository collectorAccessRepository = new CollectorAccessRepositoryImpl();
+        collectorAccessRepository.update(collectorAccessModel);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
 }
 
 

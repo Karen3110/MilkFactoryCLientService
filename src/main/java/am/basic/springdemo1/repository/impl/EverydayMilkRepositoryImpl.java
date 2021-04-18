@@ -107,7 +107,7 @@ public class EverydayMilkRepositoryImpl implements EverydayMilkRepository {
         List<EveryDayMilkModel> farmerData = new LinkedList<>();
         try {
             Connection connection = ConnectToDataBase.getConnection();
-            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM  WHERE farmer_id = ? and date BETWEEN ? and ?");
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM everyday_milk_purchase  WHERE farmer_id = ? and date BETWEEN ? and ?");
             pstmt.setInt(1, farmerID);
             pstmt.setString(2, dateBegin);
             pstmt.setString(3, dateEnd);

@@ -79,6 +79,28 @@ public class FarmerRepositoryImpl implements FarmerRepository {
     }
 
     @Override
+    public List<FarmerModel> getAll() {
+        List<FarmerModel> data = new LinkedList<>();
+        try {
+            Connection connection = ConnectToDataBase.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM farmer");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                data.add(mapModel(resultSet));
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        return data;
+    }
+
+    @Override
     public FarmerModel getByID(int id) {
         FarmerModel farmer = null;
         try {
@@ -197,7 +219,7 @@ public class FarmerRepositoryImpl implements FarmerRepository {
         } catch (SQLException exception) {
             System.out.println(exception.getMessage());
         }
-        return  data;
+        return data;
     }
 
 

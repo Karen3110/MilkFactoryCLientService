@@ -1,6 +1,7 @@
 package am.basic.springdemo1.repository.impl;
 
 import am.basic.springdemo1.model.CollectorAccessModel;
+import am.basic.springdemo1.model.CollectorModel;
 import am.basic.springdemo1.repository.CollectorAccessRepository;
 import util.ConnectToDataBase;
 
@@ -8,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class CollectorAccessRepositoryImpl implements CollectorAccessRepository {
     @Override
@@ -116,6 +119,24 @@ public class CollectorAccessRepositoryImpl implements CollectorAccessRepository 
         return collectorAccessModel;
     }
 
+    @Override
+    public List<CollectorAccessModel> getAll() {
+        List<CollectorAccessModel> collectors = new LinkedList<>();
+        try {
+            Connection connection = ConnectToDataBase.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM user_access");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                collectors.add(mapModel(resultSet));
+            }
+            preparedStatement.close();
+            connection.close();
+
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return collectors;
+    }
 
 
     CollectorAccessModel mapModel(ResultSet resultSet) throws SQLException {
