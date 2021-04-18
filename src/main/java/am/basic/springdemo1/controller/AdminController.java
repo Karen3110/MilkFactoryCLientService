@@ -178,6 +178,37 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @PostMapping("/update/delete/farmer/{farmerID}")
+    public ResponseEntity deleteFarmer(@PathVariable int farmerID) {
+        FarmerRepository farmerRepository = new FarmerRepositoryImpl();
+        farmerRepository.delete(farmerID);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/update/delete/village/{villageID}")
+    public ResponseEntity deleteVillage(@PathVariable int villageID) {
+        VillageRepository villageRepository = new VillageRepositoryImpl();
+        villageRepository.delete(villageID);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/update/delete/collector/{collectorID}")
+    public ResponseEntity deleteCollector(@PathVariable int collectorID) {
+        CollectorRepository collectorRepository = new CollectorRepositoryImpl();
+        collectorRepository.delete(collectorID);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/update/delete/collector-account/{accountID}")
+    public ResponseEntity deleteCollectorAccount(@PathVariable int accountID) {
+        CollectorAccessRepository collectorAccessRepository = new CollectorAccessRepositoryImpl();
+        collectorAccessRepository.delete(accountID);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+
 }
 
 
