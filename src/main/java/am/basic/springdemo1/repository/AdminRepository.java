@@ -1,16 +1,12 @@
 package am.basic.springdemo1.repository;
 
 import am.basic.springdemo1.model.AdminModel;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AdminRepository {
+public interface AdminRepository extends JpaRepository<AdminModel,Integer> {
 
-    void add(AdminModel adminModel);
 
-    void update(AdminModel adminModel);
+    AdminModel getById(int id);
 
-    void delete(int id);
-
-    AdminModel getByID(int id);
-
-    AdminModel getByUsernamePassword(String username, String password);
+    AdminModel getByUsernameAndPassword(String username, String password);
 }

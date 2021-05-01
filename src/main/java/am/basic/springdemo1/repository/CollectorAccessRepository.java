@@ -2,20 +2,15 @@ package am.basic.springdemo1.repository;
 
 
 import am.basic.springdemo1.model.CollectorAccessModel;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CollectorAccessRepository {
+public interface CollectorAccessRepository  extends JpaRepository<CollectorAccessModel,Integer> {
 
-    void add(CollectorAccessModel collectorAccessModel);
 
-    void update(CollectorAccessModel collectorAccessModel);
+    CollectorAccessModel getById(int id);
 
-    void delete(int id);
+    CollectorAccessModel getByLoginAndPassword(String username, String password);
 
-    CollectorAccessModel getByID(int id);
-
-    CollectorAccessModel getByUsernamePassword(String username, String password);
-
-    List<CollectorAccessModel> getAll();
-}
+ }

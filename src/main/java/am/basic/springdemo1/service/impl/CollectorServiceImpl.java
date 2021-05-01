@@ -7,11 +7,13 @@ import am.basic.springdemo1.model.exception.SignedInException;
 import am.basic.springdemo1.repository.CollectorRepository;
 import am.basic.springdemo1.repository.impl.CollectorAccessRepositoryImpl;
 import am.basic.springdemo1.service.CollectorService;
+import org.springframework.stereotype.Service;
 import util.CookieUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Service
 public class CollectorServiceImpl implements CollectorService {
     private final CollectorRepository collectorRepository;
 
@@ -23,11 +25,11 @@ public class CollectorServiceImpl implements CollectorService {
     @Override
     public CollectorModel signIn(String login, String password) throws NotFoundException {
 
-        CollectorAccessModel collectorAccessModel = new CollectorAccessRepositoryImpl().getByUsernamePassword(login, password);
+        CollectorAccessModel collectorAccessModel = new CollectorAccessRepositoryImpl().getByLoginAndPassword(login, password);
 
         NotFoundException.check(collectorAccessModel == null, "Wrong username or password");
 
-        return collectorRepository.getByID(collectorAccessModel.getCollectorID());
+        return collectorRepository.getById(collectorAccessModel.getCollectorID());
 
     }
 

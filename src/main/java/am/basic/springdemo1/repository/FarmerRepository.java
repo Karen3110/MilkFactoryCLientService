@@ -1,26 +1,19 @@
 package am.basic.springdemo1.repository;
 
 import am.basic.springdemo1.model.FarmerModel;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface FarmerRepository {
+public interface FarmerRepository extends JpaRepository<FarmerModel,Integer> {
 
-    void add(FarmerModel collector);
+    FarmerModel getById(int id);
 
-    void update(FarmerModel farmerModel);
+    FarmerModel getByNameAndSurnameAndVillageId(String name, String surname, int villageID);
 
-    void delete(int id);
+    List<FarmerModel> getByVillageId(int villageID);
 
-    List<FarmerModel> getAll();
+    List<FarmerModel> getFarmersByCollectorId(int collectorID);
 
-    FarmerModel getByID(int id);
-
-    FarmerModel getByNameSurname(String name, String surname, int villageID);
-
-    List<FarmerModel> getFarmersByVillageID(int villageID);
-
-    List<FarmerModel> getFarmersByCollectorID(int collectorID);
-
-    List<FarmerModel> getFarmersByCollectorIDAndVillageID(int collectorID,int villageID);
+    List<FarmerModel> getFarmersByCollectorIdAndVillageId(int collectorID, int villageID);
 }

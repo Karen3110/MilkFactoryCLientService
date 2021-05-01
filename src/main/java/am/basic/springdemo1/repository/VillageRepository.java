@@ -2,18 +2,16 @@ package am.basic.springdemo1.repository;
 
 
 import am.basic.springdemo1.model.VillageModel;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface VillageRepository {
-    void add(VillageModel collector);
+public interface VillageRepository extends JpaRepository<VillageModel, Integer> {
 
-    void update(VillageModel collector);
 
-    void delete(int id);
+    VillageModel getById(int id);
 
-    VillageModel getByID(int id);
 
-    List<VillageModel> getAll();
+
 }
 
