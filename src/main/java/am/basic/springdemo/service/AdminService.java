@@ -1,0 +1,20 @@
+package am.basic.springdemo.service;
+
+import am.basic.springdemo.model.Admin;
+import am.basic.springdemo.model.exception.NotFoundException;
+import am.basic.springdemo.model.exception.SignedInException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public interface AdminService {
+
+
+    Admin signIn(String login, String password) throws NotFoundException;
+
+    void checkSigned(HttpServletRequest request, HttpServletResponse response) throws SignedInException;
+
+    void logOut(HttpServletRequest request, HttpServletResponse response);
+
+}

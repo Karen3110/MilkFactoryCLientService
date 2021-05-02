@@ -4,11 +4,11 @@
 //import model.CollectorAccessModel;
 //import model.CollectorModel;
 //import model.exception.NotFoundException;
-//import am.basic.springdemo1.repository.CollectorAccessRepository;
-//import am.basic.springdemo1.repository.impl.CollectorAccessRepositoryImpl;
-//import am.basic.springdemo1.repository.impl.CollectorRepositoryImpl;
-//import am.basic.springdemo1.service.CollectorService;
-//import am.basic.springdemo1.service.impl.CollectorServiceImpl;
+//import am.basic.springdemo.repository.CollectorAccessRepository;
+//import am.basic.springdemo.repository.impl.CollectorAccessRepositoryImpl;
+//import am.basic.springdemo.repository.impl.CollectorRepositoryImpl;
+//import am.basic.springdemo.service.CollectorService;
+//import am.basic.springdemo.service.impl.CollectorServiceImpl;
 //import util.CookieUtil;
 //
 //import javax.servlet.ServletException;
@@ -21,7 +21,7 @@
 //@WebServlet("/login/collector")
 //public class CollectorLoginServlet extends HttpServlet {
 //    private final CollectorService collectorService = new CollectorServiceImpl(new CollectorRepositoryImpl());
-//    protected void am.basic.springdemo1.service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//    protected void am.basic.springdemo.service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        String username = req.getParameter("collector-login");
 //        String password = req.getParameter("collector-password");
 //

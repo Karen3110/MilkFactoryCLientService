@@ -1,12 +1,12 @@
 //package controller.Collector;
 //
 //import model.exception.SignedInException;
-//import am.basic.springdemo1.repository.impl.AdminRepositoryImpl;
-//import am.basic.springdemo1.repository.impl.CollectorRepositoryImpl;
-//import am.basic.springdemo1.service.AdminService;
-//import am.basic.springdemo1.service.CollectorService;
-//import am.basic.springdemo1.service.impl.AdminServiceImpl;
-//import am.basic.springdemo1.service.impl.CollectorServiceImpl;
+//import am.basic.springdemo.repository.impl.AdminRepositoryImpl;
+//import am.basic.springdemo.repository.impl.CollectorRepositoryImpl;
+//import am.basic.springdemo.service.AdminService;
+//import am.basic.springdemo.service.CollectorService;
+//import am.basic.springdemo.service.impl.AdminServiceImpl;
+//import am.basic.springdemo.service.impl.CollectorServiceImpl;
 //
 //import javax.servlet.ServletException;
 //import javax.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@
 //    private final CollectorService collectorService = new CollectorServiceImpl(new CollectorRepositoryImpl());
 //
 //    @Override
-//    protected void am.basic.springdemo1.service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//    protected void am.basic.springdemo.service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //
 //
 //        try {
