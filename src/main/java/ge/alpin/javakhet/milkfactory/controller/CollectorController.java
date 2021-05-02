@@ -26,26 +26,31 @@ public class CollectorController {
     private FarmerService farmerService;
 
 
-
     @GetMapping("/list")
-    public ResponseEntity<PageResponse<Collector>> getAll(@PageableDefault Pageable pageable){
+    public ResponseEntity<PageResponse<Collector>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok(new PageResponse<>(collectorService.getAll(pageable)));
     }
 
     @GetMapping("/{id}/farmers")
-    public ResponseEntity<List<Farmer>>  getByCollectorId(@PathVariable int id){
+    public ResponseEntity<List<Farmer>> getByCollectorId(@PathVariable int id) {
         return ResponseEntity.ok(farmerService.getAllByCollectorId(id));
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity create(@RequestBody Collector collector){
+        collectorService.create(collector);
+        return  ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Collector> update(@PathVariable int id, @RequestBody Collector collector) throws ResponseException {
+        return ResponseEntity.ok(collectorService.update(id, collector));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id) {
         collectorService.delete(id);
         return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Collector> update(@PathVariable int id, @RequestBody Collector collector) throws ResponseException {
-        return ResponseEntity.ok(collectorService.update(id, collector));
     }
 
 

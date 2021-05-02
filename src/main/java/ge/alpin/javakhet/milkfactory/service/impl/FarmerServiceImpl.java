@@ -31,12 +31,19 @@ public class FarmerServiceImpl implements FarmerService {
 
     @Override
     @Transactional
+    public void create(Farmer farmer) {
+        farmerRepository.create(farmer.getName(), farmer.getSurname(), farmer.getPhone(), farmer.getVillageId(), farmer.getCollectorId());
+    }
+
+    @Override
+    @Transactional
     public Farmer update(int id, Farmer farmer) throws ResponseException {
         Farmer fromDb = farmerRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
         fromDb.setName(farmer.getName());
         fromDb.setSurname(farmer.getSurname());
         fromDb.setVillageId(farmer.getVillageId());
         fromDb.setCollectorId(farmer.getCollectorId());
+        fromDb.setPhone(farmer.getPhone());
 
         return fromDb;
     }

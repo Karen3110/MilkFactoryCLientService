@@ -38,5 +38,11 @@ public class VillageServiceImpl implements VillageService {
         return villageRepository.findAll(pageable);
     }
 
+    @Override
+    @Transactional
+    public void create(Village village) {
+        villageRepository.create(village.getVillageName());
+    }
+
 
 }

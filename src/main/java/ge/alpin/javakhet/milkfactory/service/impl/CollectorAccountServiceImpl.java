@@ -2,6 +2,7 @@ package ge.alpin.javakhet.milkfactory.service.impl;
 
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.CollectorAccount;
+import ge.alpin.javakhet.milkfactory.model.dto.SignInDto;
 import ge.alpin.javakhet.milkfactory.repository.CollectorAccountRepository;
 import ge.alpin.javakhet.milkfactory.service.CollectorAccountService;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +39,10 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
     @Override
     public Page<CollectorAccount> getAll(Pageable pageable) {
         return collectorAccountRepository.findAll(pageable);
+    }
+
+    @Override
+    public CollectorAccount getByUserNameAndPassword(SignInDto signInDto) {
+        return collectorAccountRepository.findAllByLoginAndPassword(signInDto.getLogin(),signInDto.getPassword());
     }
 }

@@ -18,6 +18,13 @@ public class MilkScheduleController {
 
     private final MilkScheduleService milkScheduleService;
 
+    @PostMapping("/add")
+    public ResponseEntity<MilkSchedule> addMilkSchedule(@RequestBody MilkSchedule milkSchedule) {
+        milkScheduleService.create(milkSchedule);
+        return ResponseEntity.ok().build();
+    }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<MilkSchedule> saveEditedData(@PathVariable int id, @RequestBody MilkSchedule milkSchedule) throws ResponseException {
         return ResponseEntity.ok(milkScheduleService.update(id, milkSchedule));

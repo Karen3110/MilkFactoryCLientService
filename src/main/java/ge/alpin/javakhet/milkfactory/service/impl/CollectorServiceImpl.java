@@ -50,4 +50,10 @@ public class CollectorServiceImpl implements CollectorService {
         return collectorRepository.findAll(pageable);
     }
 
+    @Override
+    @Transactional
+    public void create(Collector collector) {
+        collectorRepository.create(collector.getName(),collector.getSurname(),collector.getVillageId());
+    }
+
 }

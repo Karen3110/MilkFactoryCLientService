@@ -11,6 +11,8 @@ public interface VillageService {
     Village update(int id, Village village) throws ResponseException;
 
     Page<Village> getAll(Pageable pageable);
+
+    void create(Village village);
 }
 
 

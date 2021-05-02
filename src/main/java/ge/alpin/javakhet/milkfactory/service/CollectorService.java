@@ -21,4 +21,6 @@ public interface CollectorService {
     Collector update(int id, Collector collector) throws ResponseException;
 
     Page<Collector> getAll(Pageable pageable);
+
+    void create(Collector collector);
 }

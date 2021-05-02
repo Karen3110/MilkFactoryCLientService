@@ -29,6 +29,16 @@ public class FarmerController {
         return ResponseEntity.ok(new PageResponse<>(farmerService.getAll(pageable)));
     }
 
+    @PutMapping("/{id}")
+    private ResponseEntity<Farmer> update(@PathVariable int id, @RequestBody Farmer farmer) throws ResponseException {
+        return ResponseEntity.ok(farmerService.update(id, farmer));
+    }
+
+    @PostMapping("/add")
+    private ResponseEntity<Farmer> create(@RequestBody Farmer farmer) {
+        farmerService.create(farmer);
+        return ResponseEntity.ok().build();
+    }
 
     @DeleteMapping("/{id}")
     private ResponseEntity<Void> delete(@PathVariable int id) {
@@ -36,16 +46,9 @@ public class FarmerController {
         return ResponseEntity.ok().build();
     }
 
-
-    @PutMapping("/{id}")
-    private ResponseEntity<Farmer> update(@PathVariable int id, @RequestBody Farmer farmer) throws ResponseException {
-        return ResponseEntity.ok(farmerService.update(id, farmer));
-    }
-
-
     @GetMapping("/{id}/milk-schedule")
     public ResponseEntity<List<MilkSchedule>> getByFarmerIdAndDate(@PathVariable("id") int farmerId, @RequestParam long start, @RequestParam long end) {
-        return ResponseEntity.ok(milkScheduleService.getByFarmerIdAndDate(farmerId,start,end));
+        return ResponseEntity.ok(milkScheduleService.getByFarmerIdAndDate(farmerId, start, end));
     }
 
 }

@@ -27,7 +27,7 @@ public class VillageController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<PageResponse<Village>> getAll(@PageableDefault Pageable pageable){
+    public ResponseEntity<PageResponse<Village>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok(new PageResponse<>(villageService.getAll(pageable)));
     }
 
@@ -36,16 +36,21 @@ public class VillageController {
         return ResponseEntity.ok(collectorService.getByVillageId(villageId));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") int villageId) {
-        villageService.delete(villageId);
+    @PostMapping("/add")
+    public ResponseEntity create(@RequestBody Village village) {
+        villageService.create(village);
         return ResponseEntity.ok().build();
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<Village> update(@PathVariable int id, @RequestBody Village village) throws ResponseException {
-        villageService.update(id,village);
+        villageService.update(id, village);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") int villageId) {
+        villageService.delete(villageId);
         return ResponseEntity.ok().build();
     }
 

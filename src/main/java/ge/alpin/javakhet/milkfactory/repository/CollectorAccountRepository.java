@@ -9,7 +9,7 @@ public interface CollectorAccountRepository extends JpaRepository<CollectorAccou
 
     CollectorAccount getById(int id);
 
-    CollectorAccount getByLoginAndPassword(String username, String password);
+    CollectorAccount findAllByLoginAndPassword(String login, String password);
 
 
 

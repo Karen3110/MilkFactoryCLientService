@@ -4,6 +4,7 @@ package ge.alpin.javakhet.milkfactory.controller;
 import ge.alpin.javakhet.milkfactory.commons.model.PageResponse;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.CollectorAccount;
+import ge.alpin.javakhet.milkfactory.model.dto.SignInDto;
 import ge.alpin.javakhet.milkfactory.service.CollectorAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,11 @@ public class CollectorAccountController {
 
     @Autowired
     private CollectorAccountService collectorAccountService;
+
+    @PostMapping("/login")
+    private ResponseEntity<CollectorAccount> signIn(@RequestBody SignInDto signInDto){
+        return ResponseEntity.ok(collectorAccountService.getByUserNameAndPassword(signInDto));
+    }
 
 
     @GetMapping("/list")

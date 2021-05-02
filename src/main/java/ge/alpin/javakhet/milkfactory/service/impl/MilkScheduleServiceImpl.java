@@ -20,12 +20,22 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
 
     @Override
     @Transactional
-    //todo implemented
     public MilkSchedule update(int id, MilkSchedule milkSchedule) throws ResponseException {
         MilkSchedule fromDb = milkScheduleRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        fromDb.setCalculated(milkSchedule.isCalculated());
+        fromDb.setShift(milkSchedule.getShift());
+        fromDb.setCountKiloGram(milkSchedule.getCountKiloGram());
+        fromDb.setCountMilliLiter(milkSchedule.getCountMilliLiter());
 
 
         return fromDb;
+    }
+
+    @Override
+    @Transactional
+    public void create(MilkSchedule milkSchedule) {
+        milkScheduleRepository.createMilkSchedule(milkSchedule.isCalculated(),milkSchedule.getCollectorId(),milkSchedule.getCountKiloGram(),milkSchedule.getCountMilliLiter(),
+                milkSchedule.getDate(),milkSchedule.getFarmerId(),milkSchedule.getPrice(),milkSchedule.getShift().toString());
     }
 
     @Override

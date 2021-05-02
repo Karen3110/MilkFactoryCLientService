@@ -7,20 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Data
 @Entity
-public class Farmer {
+@Data
+public class Constants {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
-
-    private String surname;
-
-    private String phone;
-
-    private int villageId;
-
-    private int collectorId;
+    int id;
+    String name;
+    String value;
 
 }

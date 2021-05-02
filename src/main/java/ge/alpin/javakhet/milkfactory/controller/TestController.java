@@ -1,5 +1,6 @@
 package ge.alpin.javakhet.milkfactory.controller;
 
+import ge.alpin.javakhet.milkfactory.model.lcp.Shift;
 import ge.alpin.javakhet.milkfactory.repository.MilkScheduleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class TestController {
 
     @GetMapping("/test1")
     ResponseEntity test1() {
-        return new ResponseEntity(milkScheduleRepository.getAllByFarmerIdAndDateBetween(1, System.currentTimeMillis(), System.currentTimeMillis()), HttpStatus.OK);
+        return new ResponseEntity(Shift.AFTERNOON.toString(), HttpStatus.OK);
 
     }
 }
