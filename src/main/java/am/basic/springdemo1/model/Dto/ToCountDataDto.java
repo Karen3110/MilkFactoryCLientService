@@ -9,7 +9,7 @@ public class ToCountDataDto {
     int villageID;
     int collectorID;
     int farmerID;
-    String start;
-    String end;
+    long start;
+    long end;
 
 }

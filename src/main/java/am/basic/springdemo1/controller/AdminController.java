@@ -83,19 +83,16 @@ public class AdminController {
     public ResponseEntity getToCountData(@RequestBody ToCountDataDto countDataDto) {
 
 
-        List<EveryDayMilkModel> data = everydayMilkRepository.findAllByFarmerIdAndDateBetween(countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
+        List<EveryDayMilkModel> data = everydayMilkRepository.getAllByFarmerIdAndDateBetween(countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
         FarmerModel farmer = farmerRepository.getById(countDataDto.getFarmerID());
         CollectorModel collector = collectorRepository.getById(countDataDto.getCollectorID());
         VillageModel village = villageRepository.getById(countDataDto.getVillageID());
-        String start = countDataDto.getStart();
-        String end = countDataDto.getEnd();
-
         Map<String, Object> respData = new HashMap<>();
         respData.put("table", data);
         respData.put("farmer", farmer);
         respData.put("collector", collector);
-        respData.put("start", start);
-        respData.put("end", end);
+        respData.put("start", countDataDto.getStart());
+        respData.put("end", countDataDto.getEnd());
         respData.put("village", village);
 
         return ResponseEntity.status(500).body(respData);

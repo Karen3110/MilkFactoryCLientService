@@ -1,7 +1,6 @@
 package am.basic.springdemo1.model;
 
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,13 +12,22 @@ import javax.persistence.Id;
 public class EveryDayMilkModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String date;
-    String shift;
-    int farmerId;
-    int collectorId;
-    float countMilliLiter;
-    float countKiloGram;
-    float price;
-    boolean calculated;
+    private int id;
+
+    private long date;
+
+    private String shift;
+
+    private int farmerId;
+
+    private int collectorId;
+
+    private float countMilliLiter;
+
+    private float countKiloGram;
+
+    private float price;
+
+    private boolean calculated;
+
 }
