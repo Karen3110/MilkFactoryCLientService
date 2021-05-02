@@ -9,9 +9,8 @@ public interface CollectorRepository extends JpaRepository<Collector, Integer> {
 
     Collector getById(int id);
 
-    Collector getByNameAndSurname(String name, String surname);
 
-    List<Collector> getAllByVillageId(int id);
+    List<Collector> findAllByVillageId(int id);
 
 
 }

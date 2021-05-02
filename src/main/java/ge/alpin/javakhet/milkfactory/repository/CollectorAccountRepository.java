@@ -11,4 +11,6 @@ public interface CollectorAccountRepository extends JpaRepository<CollectorAccou
 
     CollectorAccount getByLoginAndPassword(String username, String password);
 
+
+
  }

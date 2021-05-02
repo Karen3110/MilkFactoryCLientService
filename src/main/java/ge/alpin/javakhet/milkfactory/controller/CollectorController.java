@@ -25,11 +25,12 @@ public class CollectorController {
     @Autowired
     private FarmerService farmerService;
 
+
+
     @GetMapping("/list")
     public ResponseEntity<PageResponse<Collector>> getAll(@PageableDefault Pageable pageable){
         return ResponseEntity.ok(new PageResponse<>(collectorService.getAll(pageable)));
     }
-
 
     @GetMapping("/{id}/farmers")
     public ResponseEntity<List<Farmer>>  getByCollectorId(@PathVariable int id){

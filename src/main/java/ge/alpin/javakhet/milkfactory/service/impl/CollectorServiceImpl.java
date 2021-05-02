@@ -28,7 +28,7 @@ public class CollectorServiceImpl implements CollectorService {
 
     @Override
     public List<Collector> getByVillageId(int villageId) {
-        return collectorRepository.getAllByVillageId(villageId);
+        return collectorRepository.findAllByVillageId(villageId);
     }
 
     @Override
