@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface VillageRepository extends JpaRepository<VillageModel, Integer> {
 
-
     VillageModel getById(int id);
 
 

@@ -7,6 +7,7 @@ import am.basic.springdemo1.model.exception.SignedInException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 public interface AdminService {
 
 

@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class JspUtils {
+public class    JspUtils {
 
 
     public static String getAttribute(HttpServletRequest request, HttpServletResponse response, String attributeName) throws IOException {

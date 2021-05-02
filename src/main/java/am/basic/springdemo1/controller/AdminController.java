@@ -83,7 +83,7 @@ public class AdminController {
     public ResponseEntity getToCountData(@RequestBody ToCountDataDto countDataDto) {
 
 
-        List<EveryDayMilkModel> data = everydayMilkRepository.getFarmerListBeginEndDate(countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
+        List<EveryDayMilkModel> data = everydayMilkRepository.findAllByFarmerIdAndDateBetween(countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
         FarmerModel farmer = farmerRepository.getById(countDataDto.getFarmerID());
         CollectorModel collector = collectorRepository.getById(countDataDto.getCollectorID());
         VillageModel village = villageRepository.getById(countDataDto.getVillageID());
@@ -104,7 +104,7 @@ public class AdminController {
     @PostMapping("/counting/calculate")
     public ResponseEntity calculateData(@RequestBody ToCountDataDto countDataDto) {
 
-        everydayMilkRepository.calculateMilkBeginEnd(countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd(), true);
+        everydayMilkRepository.calculateMilkBeginEnd(true, countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
 
         return ResponseEntity.status(200).build();
     }
@@ -112,7 +112,7 @@ public class AdminController {
     @PostMapping("/counting/uncalculate")
     public ResponseEntity unCalculateData(@RequestBody ToCountDataDto countDataDto) {
 
-        everydayMilkRepository.calculateMilkBeginEnd(countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd(), false);
+        everydayMilkRepository.calculateMilkBeginEnd(false, countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
 
         return ResponseEntity.status(200).build();
     }
