@@ -1,6 +1,8 @@
 package am.basic.springdemo.controller;
 
+import am.basic.springdemo.commons.model.ResponseException;
 import am.basic.springdemo.model.Collector;
+import am.basic.springdemo.model.Village;
 import am.basic.springdemo.service.CollectorService;
 import am.basic.springdemo.service.VillageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,13 @@ public class VillageController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") int villageId) {
         villageService.delete(villageId);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Village> update(@PathVariable int id, @RequestBody Village village) throws ResponseException {
+        villageService.update(id,village);
         return ResponseEntity.ok().build();
     }
 

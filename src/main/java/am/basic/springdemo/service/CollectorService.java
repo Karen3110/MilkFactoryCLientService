@@ -1,5 +1,6 @@
 package am.basic.springdemo.service;
 
+import am.basic.springdemo.commons.model.ResponseException;
 import am.basic.springdemo.model.Collector;
 import am.basic.springdemo.model.exception.NotFoundException;
 import am.basic.springdemo.model.exception.SignedInException;
@@ -22,4 +23,5 @@ public interface CollectorService {
 
     void delete(int id);
 
+    Collector update(int id, Collector collector) throws ResponseException;
 }

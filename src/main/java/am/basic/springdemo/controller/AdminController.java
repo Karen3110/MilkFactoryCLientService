@@ -136,34 +136,6 @@ public class AdminController {
         return ResponseEntity.ok(data);
     }
 
-    @PostMapping("/update/update/farmer")
-    public ResponseEntity updateFarmer(@RequestBody Farmer farmer) {
-        farmerRepository.save(farmer);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-    @PostMapping("/update/update/village")
-    public ResponseEntity updateVillage(@RequestBody Village village) {
-        villageRepository.save(village);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-    @PostMapping("/update/update/collector")
-    public ResponseEntity updateVillage(@RequestBody Collector collector) {
-        collectorRepository.save(collector);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-    @PostMapping("/update/update/collector-account")
-    public ResponseEntity updateVillage(@RequestBody CollectorAccount collectorAccount) {
-        collectorAccountRepository.save(collectorAccount);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-
-
-
-
 
 }
 

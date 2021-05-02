@@ -1,12 +1,11 @@
 package am.basic.springdemo.controller;
 
+import am.basic.springdemo.commons.model.ResponseException;
+import am.basic.springdemo.model.Farmer;
 import am.basic.springdemo.service.FarmerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,6 +22,13 @@ public class FarmerController {
         return ResponseEntity.ok().build();
     }
 
+
+    @PutMapping("/{id}")
+    private  ResponseEntity<Farmer> update(@PathVariable int id, @RequestBody Farmer farmer) throws ResponseException {
+
+
+        return ResponseEntity.ok(farmerService.update(id,farmer));
+    }
 
 
 }

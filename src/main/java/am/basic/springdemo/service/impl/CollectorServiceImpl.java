@@ -1,5 +1,6 @@
 package am.basic.springdemo.service.impl;
 
+import am.basic.springdemo.commons.model.ResponseException;
 import am.basic.springdemo.model.Collector;
 import am.basic.springdemo.model.CollectorAccount;
 import am.basic.springdemo.model.exception.NotFoundException;
@@ -9,7 +10,9 @@ import am.basic.springdemo.repository.CollectorRepository;
 import am.basic.springdemo.service.CollectorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import util.CookieUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,4 +61,14 @@ public class CollectorServiceImpl implements CollectorService {
     public void delete(int id) {
         collectorRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional
+    public Collector update(int id, Collector collector) throws ResponseException {
+        Collector fromDb = collectorRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        fromDb.setName(collector.getName());
+        fromDb.setSurname(collector.getSurname());
+        return fromDb;
+    }
+
 }

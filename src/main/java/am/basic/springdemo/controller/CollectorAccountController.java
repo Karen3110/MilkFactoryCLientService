@@ -1,6 +1,7 @@
 package am.basic.springdemo.controller;
 
 
+import am.basic.springdemo.commons.model.ResponseException;
 import am.basic.springdemo.model.CollectorAccount;
 import am.basic.springdemo.service.CollectorAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CollectorAccountController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<CollectorAccount> update(@PathVariable int id, @RequestBody CollectorAccount collectorAccount){
+    public ResponseEntity<CollectorAccount> update(@PathVariable int id, @RequestBody CollectorAccount collectorAccount) throws ResponseException {
         return ResponseEntity.ok(collectorAccountService.update(id,collectorAccount));
     }
 
