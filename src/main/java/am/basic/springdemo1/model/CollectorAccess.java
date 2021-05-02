@@ -10,13 +10,15 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class AdminModel {
-    String name;
-    String surname;
-    String username;
-    String password;
-
+public class CollectorAccess {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
+
+    private int collectorId;
+
+    private String login;
+
+    private String password;
+
 }

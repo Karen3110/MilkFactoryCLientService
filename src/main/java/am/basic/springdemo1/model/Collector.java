@@ -10,11 +10,16 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class CollectorAccessModel {
+public class Collector {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    int collectorID;
-    String login;
-    String password;
+    private int id;
+
+    private String name;
+
+    private String surname;
+
+    private int villageId;
+
 }

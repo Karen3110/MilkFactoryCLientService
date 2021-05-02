@@ -1,6 +1,6 @@
 package am.basic.springdemo1.service.impl;
 
-import am.basic.springdemo1.model.AdminModel;
+import am.basic.springdemo1.model.Admin;
 import am.basic.springdemo1.model.exception.NotFoundException;
 import am.basic.springdemo1.model.exception.SignedInException;
 import am.basic.springdemo1.repository.AdminRepository;
@@ -20,9 +20,9 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
-    public AdminModel signIn(String login, String password) throws NotFoundException {
+    public Admin signIn(String login, String password) throws NotFoundException {
 
-        AdminModel admin = adminRepository.getByUsernameAndPassword(login, password);
+        Admin admin = adminRepository.getByUsernameAndPassword(login, password);
         System.out.println(admin);
         NotFoundException.check(admin == null, "Wrong username or password");
         return admin;

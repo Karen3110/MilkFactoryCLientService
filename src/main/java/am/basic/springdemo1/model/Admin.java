@@ -10,12 +10,18 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class CollectorModel {
+public class Admin {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String name;
-    String surname;
-    int villageId;
+
+    private String name;
+
+    private String surname;
+
+    private String username;
+
+    private String password;
+
 }
-// getter setters are generated automaticly

@@ -18,7 +18,7 @@ public class TestController {
 
     @GetMapping("/test1")
     ResponseEntity test1() {
-        return new ResponseEntity(everydayMilkRepository.findAllByFarmerIdAndDateBetween(1, "2021-01-03 00:00:00", "2021-01-05 00:00:00"), HttpStatus.OK);
+        return new ResponseEntity(everydayMilkRepository.getAllByFarmerIdAndDateBetween(1, System.currentTimeMillis(), System.currentTimeMillis()), HttpStatus.OK);
 
     }
 }

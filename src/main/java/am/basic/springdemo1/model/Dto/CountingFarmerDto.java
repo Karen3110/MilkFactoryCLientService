@@ -4,6 +4,9 @@ import lombok.Data;
 
 @Data
 public class CountingFarmerDto {
-    int collectorID;
-    int villageID;
+
+    private int collectorId;
+
+    private int villageId;
+
 }

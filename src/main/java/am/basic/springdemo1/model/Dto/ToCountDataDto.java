@@ -6,10 +6,15 @@ import lombok.Data;
 
 @Data
 public class ToCountDataDto {
-    int villageID;
-    int collectorID;
-    int farmerID;
-    long start;
-    long end;
+
+   private int villageId;
+
+   private int collectorId;
+
+   private int farmerId;
+
+   private long start;
+
+   private long end;
 
 }

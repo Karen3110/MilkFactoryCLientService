@@ -9,12 +9,16 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class FarmerModel {
+public class Farmer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String name;
-    String surname;
-    int villageId;
-    int collectorId;
+    private int id;
+    private String name;
+
+    private String surname;
+
+    private int villageId;
+
+    private int collectorId;
+
 }

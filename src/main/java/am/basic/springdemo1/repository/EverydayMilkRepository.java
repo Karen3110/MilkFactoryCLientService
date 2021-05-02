@@ -1,6 +1,6 @@
 package am.basic.springdemo1.repository;
 
-import am.basic.springdemo1.model.EveryDayMilkModel;
+import am.basic.springdemo1.model.EveryDayMilk;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -8,15 +8,15 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface EverydayMilkRepository extends JpaRepository<EveryDayMilkModel, Integer> {
+public interface EverydayMilkRepository extends JpaRepository<EveryDayMilk, Integer> {
 
 
-    List<EveryDayMilkModel> getByFarmerId(int farmerID);
+    List<EveryDayMilk> getByFarmerId(int farmerID);
 
     // need to write implementation of code
     //how to get between date from sql with begin end string
     //YYYY-MM-DD hh:mm:ss
-    List<EveryDayMilkModel> getAllByFarmerIdAndDateBetween(int farmerID, long dateBegin, long dateEnd);
+    List<EveryDayMilk> getAllByFarmerIdAndDateBetween(int farmerID, long dateBegin, long dateEnd);
 
 
     @Modifying

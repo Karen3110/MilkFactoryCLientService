@@ -39,7 +39,7 @@ public class AdminController {
     @PostMapping("/signIn")
     public ResponseEntity signIn(@RequestBody SignInDto signInDto) {
         try {
-            AdminModel admin = adminService.signIn(signInDto.getUsername(), signInDto.getPassword());
+            Admin admin = adminService.signIn(signInDto.getUsername(), signInDto.getPassword());
             System.out.println(admin);
             return new ResponseEntity(admin, HttpStatus.OK);
         } catch (NotFoundException ex) {
@@ -64,18 +64,18 @@ public class AdminController {
     @PostMapping("/counting/village/{villageID}")
     public ResponseEntity getCountingCollectors(@PathVariable int villageID) {
 
-        List<CollectorModel> collectorModels = collectorRepository.getCollectorByVillageId(villageID);
+        List<Collector> collectors = collectorRepository.getCollectorByVillageId(villageID);
 
-        return ResponseEntity.ok(collectorModels);
+        return ResponseEntity.ok(collectors);
     }
 
     // collector select
     @PostMapping("/counting/collector")
     public ResponseEntity getCountingFarmers(@RequestBody CountingFarmerDto countingFarmerDto) {
 
-        List<FarmerModel> farmerModels = farmerRepository.getFarmersByCollectorIdAndVillageId(countingFarmerDto.getCollectorID(), countingFarmerDto.getVillageID());
+        List<Farmer> farmers = farmerRepository.getFarmersByCollectorIdAndVillageId(countingFarmerDto.getCollectorId(), countingFarmerDto.getVillageId());
 
-        return ResponseEntity.ok(farmerModels);
+        return ResponseEntity.ok(farmers);
     }
 
     // farmer select date select and  submit
@@ -83,10 +83,10 @@ public class AdminController {
     public ResponseEntity getToCountData(@RequestBody ToCountDataDto countDataDto) {
 
 
-        List<EveryDayMilkModel> data = everydayMilkRepository.getAllByFarmerIdAndDateBetween(countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
-        FarmerModel farmer = farmerRepository.getById(countDataDto.getFarmerID());
-        CollectorModel collector = collectorRepository.getById(countDataDto.getCollectorID());
-        VillageModel village = villageRepository.getById(countDataDto.getVillageID());
+        List<EveryDayMilk> data = everydayMilkRepository.getAllByFarmerIdAndDateBetween(countDataDto.getFarmerId(), countDataDto.getStart(), countDataDto.getEnd());
+        Farmer farmer = farmerRepository.getById(countDataDto.getFarmerId());
+        Collector collector = collectorRepository.getById(countDataDto.getCollectorId());
+        Village village = villageRepository.getById(countDataDto.getVillageId());
         Map<String, Object> respData = new HashMap<>();
         respData.put("table", data);
         respData.put("farmer", farmer);
@@ -101,7 +101,7 @@ public class AdminController {
     @PostMapping("/counting/calculate")
     public ResponseEntity calculateData(@RequestBody ToCountDataDto countDataDto) {
 
-        everydayMilkRepository.calculateMilkBeginEnd(true, countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
+        everydayMilkRepository.calculateMilkBeginEnd(true, countDataDto.getFarmerId(), countDataDto.getStart(), countDataDto.getEnd());
 
         return ResponseEntity.status(200).build();
     }
@@ -109,7 +109,7 @@ public class AdminController {
     @PostMapping("/counting/uncalculate")
     public ResponseEntity unCalculateData(@RequestBody ToCountDataDto countDataDto) {
 
-        everydayMilkRepository.calculateMilkBeginEnd(false, countDataDto.getFarmerID(), countDataDto.getStart(), countDataDto.getEnd());
+        everydayMilkRepository.calculateMilkBeginEnd(false, countDataDto.getFarmerId(), countDataDto.getStart(), countDataDto.getEnd());
 
         return ResponseEntity.status(200).build();
     }
@@ -118,7 +118,7 @@ public class AdminController {
     @PostMapping("/counting/save")
     public ResponseEntity saveEditedData(@RequestBody ToSaveDto toSaveDto) {
 
-        for (EveryDayMilkModel item : toSaveDto.getData()) {
+        for (EveryDayMilk item : toSaveDto.getData()) {
             everydayMilkRepository.save(item);
         }
         return ResponseEntity.status(200).build();
@@ -145,26 +145,26 @@ public class AdminController {
     }
 
     @PostMapping("/update/update/farmer")
-    public ResponseEntity updateFarmer(@RequestBody FarmerModel farmer) {
+    public ResponseEntity updateFarmer(@RequestBody Farmer farmer) {
         farmerRepository.save(farmer);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/update/update/village")
-    public ResponseEntity updateVillage(@RequestBody VillageModel village) {
+    public ResponseEntity updateVillage(@RequestBody Village village) {
         villageRepository.save(village);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/update/update/collector")
-    public ResponseEntity updateVillage(@RequestBody CollectorModel collector) {
+    public ResponseEntity updateVillage(@RequestBody Collector collector) {
         collectorRepository.save(collector);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/update/update/collector-account")
-    public ResponseEntity updateVillage(@RequestBody CollectorAccessModel collectorAccessModel) {
-        collectorAccessRepository.save(collectorAccessModel);
+    public ResponseEntity updateVillage(@RequestBody CollectorAccess collectorAccess) {
+        collectorAccessRepository.save(collectorAccess);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

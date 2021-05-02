@@ -9,25 +9,12 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class EveryDayMilkModel {
+public class Village {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private long date;
-
-    private String shift;
-
-    private int farmerId;
-
-    private int collectorId;
-
-    private float countMilliLiter;
-
-    private float countKiloGram;
-
-    private float price;
-
-    private boolean calculated;
+    private String villageName;
 
 }

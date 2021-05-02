@@ -1,17 +1,17 @@
 package am.basic.springdemo1.repository;
 
-import am.basic.springdemo1.model.CollectorModel;
+import am.basic.springdemo1.model.Collector;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface CollectorRepository extends JpaRepository<CollectorModel, Integer> {
+public interface CollectorRepository extends JpaRepository<Collector, Integer> {
 
-    CollectorModel getById(int id);
+    Collector getById(int id);
 
-    CollectorModel getByNameAndSurname(String name, String surname);
+    Collector getByNameAndSurname(String name, String surname);
 
-    List<CollectorModel> getCollectorByVillageId(int id);
+    List<Collector> getCollectorByVillageId(int id);
 
 
 }

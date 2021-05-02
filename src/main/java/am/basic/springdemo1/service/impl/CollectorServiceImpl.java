@@ -1,7 +1,7 @@
 package am.basic.springdemo1.service.impl;
 
-import am.basic.springdemo1.model.CollectorAccessModel;
-import am.basic.springdemo1.model.CollectorModel;
+import am.basic.springdemo1.model.CollectorAccess;
+import am.basic.springdemo1.model.Collector;
 import am.basic.springdemo1.model.exception.NotFoundException;
 import am.basic.springdemo1.model.exception.SignedInException;
 import am.basic.springdemo1.repository.CollectorAccessRepository;
@@ -27,11 +27,11 @@ public class CollectorServiceImpl implements CollectorService {
 
 
     @Override
-    public CollectorModel signIn(String login, String password) throws NotFoundException {
+    public Collector signIn(String login, String password) throws NotFoundException {
 
-        CollectorAccessModel collectorAccessModel = collectorAccessRepository.getByLoginAndPassword(login, password);
-        NotFoundException.check(collectorAccessModel == null, "Wrong username or password");
-        return collectorRepository.getById(collectorAccessModel.getCollectorID());
+        CollectorAccess collectorAccess = collectorAccessRepository.getByLoginAndPassword(login, password);
+        NotFoundException.check(collectorAccess == null, "Wrong username or password");
+        return collectorRepository.getById(collectorAccess.getCollectorID());
 
     }
 

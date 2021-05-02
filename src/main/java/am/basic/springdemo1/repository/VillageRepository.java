@@ -1,14 +1,12 @@
 package am.basic.springdemo1.repository;
 
 
-import am.basic.springdemo1.model.VillageModel;
+import am.basic.springdemo1.model.Village;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+public interface VillageRepository extends JpaRepository<Village, Integer> {
 
-public interface VillageRepository extends JpaRepository<VillageModel, Integer> {
-
-    VillageModel getById(int id);
+    Village getById(int id);
 
 
 
