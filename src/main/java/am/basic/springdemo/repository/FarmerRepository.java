@@ -16,4 +16,7 @@ public interface FarmerRepository extends JpaRepository<Farmer,Integer> {
     List<Farmer> getFarmersByCollectorId(int collectorID);
 
     List<Farmer> getFarmersByCollectorIdAndVillageId(int collectorID, int villageID);
+
+    List<Farmer> getAllByCollectorId(int collectorId);
+
 }

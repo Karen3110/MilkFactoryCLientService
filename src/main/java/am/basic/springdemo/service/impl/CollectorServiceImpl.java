@@ -10,6 +10,8 @@ import am.basic.springdemo.repository.CollectorRepository;
 import am.basic.springdemo.service.CollectorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,6 +71,11 @@ public class CollectorServiceImpl implements CollectorService {
         fromDb.setName(collector.getName());
         fromDb.setSurname(collector.getSurname());
         return fromDb;
+    }
+
+    @Override
+    public Page<Collector> getAll(Pageable pageable) {
+        return collectorRepository.findAll(pageable);
     }
 
 }

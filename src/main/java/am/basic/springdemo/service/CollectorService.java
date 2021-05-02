@@ -4,6 +4,8 @@ import am.basic.springdemo.commons.model.ResponseException;
 import am.basic.springdemo.model.Collector;
 import am.basic.springdemo.model.exception.NotFoundException;
 import am.basic.springdemo.model.exception.SignedInException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,4 +26,6 @@ public interface CollectorService {
     void delete(int id);
 
     Collector update(int id, Collector collector) throws ResponseException;
+
+    Page<Collector> getAll(Pageable pageable);
 }

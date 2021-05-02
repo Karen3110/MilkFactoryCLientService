@@ -6,9 +6,13 @@ import am.basic.springdemo.repository.FarmerRepository;
 import am.basic.springdemo.service.FarmerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -28,12 +32,22 @@ public class FarmerServiceImpl implements FarmerService {
     @Override
     @Transactional
     public Farmer update(int id, Farmer farmer) throws ResponseException {
-        Farmer fromDb = farmerRepository.findById(id).orElseThrow(()-> new ResponseException(HttpStatus.NOT_FOUND));
+        Farmer fromDb = farmerRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
         fromDb.setName(farmer.getName());
         fromDb.setSurname(farmer.getSurname());
         fromDb.setVillageId(farmer.getVillageId());
         fromDb.setCollectorId(farmer.getCollectorId());
 
         return fromDb;
+    }
+
+    @Override
+    public Page<Farmer> getAll(Pageable pageable) {
+        return farmerRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Farmer> getAllByCollectorId(int collectorId) {
+        return farmerRepository.getAllByCollectorId(collectorId);
     }
 }
