@@ -12,7 +12,7 @@ public interface FarmerService {
 
     void delete(int id);
 
-    void create (Farmer farmer);
+    Farmer create (Farmer farmer);
 
     Farmer update(int id, Farmer farmer) throws ResponseException;
 

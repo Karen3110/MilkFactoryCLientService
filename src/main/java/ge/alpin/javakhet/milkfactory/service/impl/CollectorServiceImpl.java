@@ -32,8 +32,9 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
-    public void delete(int id) {
-        collectorRepository.deleteById(id);
+    public Collector create(Collector collector) {
+        return collectorRepository.save(collector);
+
     }
 
     @Override
@@ -46,15 +47,15 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
+    public void delete(int id) {
+        collectorRepository.deleteById(id);
+    }
+
+
+    @Override
     public Page<Collector> getAll(Pageable pageable) {
         return collectorRepository.findAll(pageable);
     }
 
-    @Override
-    @Transactional
-    public void create(Collector collector) {
-        collectorRepository.create(collector.getName(), collector.getSurname(), collector.getVillageId());
-
-    }
 
 }

@@ -42,10 +42,8 @@ public class ConstantsServiceImpl implements ConstantsService {
     }
 
     @Override
-    @Transactional
-    public void create(Constants constants) {
-        constantsRepository.create(constants.getName(), constants.getValue());
-
+    public Constants create(Constants constants) {
+        return constantsRepository.save(constants);
     }
 
     @Override

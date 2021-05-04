@@ -13,9 +13,6 @@ public interface MilkScheduleRepository extends JpaRepository<MilkSchedule, Inte
 
     List<MilkSchedule> getByFarmerId(int farmerID);
 
-    @Modifying
-    @Query(value = "INSERT INTO milk_schedule VALUES(0,:calculated,:collectorId,:countKiloGram,:countMilliLiter,:date,:farmerId,:price,:shift)", nativeQuery = true)
-    void createMilkSchedule(@Param("calculated") boolean calculated, @Param("collectorId") int collectorId, @Param("countKiloGram") float countKiloGram, @Param("countMilliLiter") float countMilliLiter, @Param("date") long date, @Param("farmerId") int farmerId, @Param("price") float price, @Param("shift") String shift);
 
 
     List<MilkSchedule> getAllByFarmerIdAndDateBetween(int farmerID, long dateBegin, long dateEnd);

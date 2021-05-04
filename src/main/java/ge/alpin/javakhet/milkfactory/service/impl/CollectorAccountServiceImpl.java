@@ -47,9 +47,8 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
     }
 
     @Override
-
     public CollectorAccount create(CollectorAccount collectorAccount) {
-        collectorAccountRepository.create(collectorAccount.getCollectorId(), collectorAccount.getLogin(), collectorAccount.getPassword());
-        return collectorAccount;
+
+        return collectorAccountRepository.save(collectorAccount);
     }
 }

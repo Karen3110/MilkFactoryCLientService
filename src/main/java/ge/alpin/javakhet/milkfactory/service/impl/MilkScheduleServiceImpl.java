@@ -33,10 +33,8 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
     }
 
     @Override
-    @Transactional
-    public void create(MilkSchedule milkSchedule) {
-        milkScheduleRepository.createMilkSchedule(milkSchedule.isCalculated(), milkSchedule.getCollectorId(), milkSchedule.getCountKiloGram(), milkSchedule.getCountMilliLiter(),
-                milkSchedule.getDate(), milkSchedule.getFarmerId(), milkSchedule.getPrice(), milkSchedule.getShift().toString());
+    public MilkSchedule create(MilkSchedule milkSchedule) {
+        return milkScheduleRepository.save(milkSchedule);
     }
 
     @Override

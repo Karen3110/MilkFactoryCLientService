@@ -12,8 +12,6 @@ public interface VillageRepository extends JpaRepository<Village, Integer> {
 
     Village getById(int id);
 
-    @Modifying
-    @Query(value = "INSERT INTO village Values(0,:villageName)", nativeQuery = true)
-    void create(@Param("villageName") String villageName);
+
 }
 

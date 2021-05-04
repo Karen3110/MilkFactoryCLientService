@@ -39,9 +39,8 @@ public class VillageServiceImpl implements VillageService {
     }
 
     @Override
-    @Transactional
-    public void create(Village village) {
-        villageRepository.create(village.getVillageName());
+    public Village create(Village village) {
+        return villageRepository.save(village);
     }
 
 

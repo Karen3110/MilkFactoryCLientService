@@ -18,8 +18,5 @@ public interface FarmerRepository extends JpaRepository<Farmer, Integer> {
 
     Farmer getByPhone(String phone);
 
-    @Modifying
-    @Query(value = "INSERT INTO farmer VALUES (0,:name,:surname,:phone,:villageId,:collectorId)", nativeQuery = true)
-    void create(@Param("name") String name, @Param("surname") String surname,@Param("phone") String phone, @Param("villageId") int villageId, @Param("collectorId") int collectorId);
 
 }

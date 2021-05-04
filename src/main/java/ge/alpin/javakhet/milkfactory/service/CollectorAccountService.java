@@ -16,5 +16,5 @@ public interface CollectorAccountService {
 
     CollectorAccount getByUserNameAndPassword(SignInDto signInDto);
 
-    CollectorAccount create(CollectorAccount collectorAccount) throws DuplicateException;
+    CollectorAccount create(CollectorAccount collectorAccount) ;
 }

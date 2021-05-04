@@ -11,8 +11,7 @@ public interface MilkScheduleService {
     MilkSchedule update(int id, MilkSchedule milkSchedule) throws ResponseException;
 
 
-    @Transactional
-    void create(MilkSchedule milkSchedule);
+    MilkSchedule create(MilkSchedule milkSchedule);
 
     void calculateMilkBeginEnd(boolean calcualte, int farmerId, long start, long end);
 

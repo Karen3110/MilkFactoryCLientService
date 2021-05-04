@@ -18,5 +18,5 @@ public interface CollectorService {
 
     Page<Collector> getAll(Pageable pageable);
 
-    void create(Collector collector) throws DuplicateException;
+    Collector create(Collector collector) ;
 }

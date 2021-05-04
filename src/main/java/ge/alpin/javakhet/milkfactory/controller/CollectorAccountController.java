@@ -21,7 +21,7 @@ public class CollectorAccountController {
     private CollectorAccountService collectorAccountService;
 
     @PostMapping("/add")
-    public  ResponseEntity<CollectorAccount> create(CollectorAccount collectorAccount)  {
+    public  ResponseEntity<CollectorAccount> create(@RequestBody CollectorAccount collectorAccount)  {
         return  ResponseEntity.ok(collectorAccountService.create(collectorAccount));
     }
 

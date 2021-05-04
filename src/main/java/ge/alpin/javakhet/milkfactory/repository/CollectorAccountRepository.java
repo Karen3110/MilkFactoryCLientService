@@ -14,7 +14,4 @@ public interface CollectorAccountRepository extends JpaRepository<CollectorAccou
 
     CollectorAccount findAllByLoginAndPassword(String login, String password);
 
-@Modifying
-@Query(value = "INSERT INTO collector_account VALUES (0,:collectorId,:login,:password)",nativeQuery = true)
-    void create(@Param("collectorId") int collectorId,@Param("login") String login,@Param("password") String password);
 }

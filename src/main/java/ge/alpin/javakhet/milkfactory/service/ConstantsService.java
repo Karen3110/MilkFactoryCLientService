@@ -16,7 +16,7 @@ public interface ConstantsService {
 
     Constants getById(int id) throws ResponseException;
 
-    void create(Constants constants);
+    Constants create(Constants constants);
 
     Constants update(int id, Constants constants) throws ResponseException;
 

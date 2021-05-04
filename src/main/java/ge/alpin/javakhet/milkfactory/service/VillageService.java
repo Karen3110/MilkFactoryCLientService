@@ -12,7 +12,7 @@ public interface VillageService {
 
     Page<Village> getAll(Pageable pageable);
 
-    void create(Village village);
+    Village create(Village village);
 }
 
 

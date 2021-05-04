@@ -30,9 +30,8 @@ public class FarmerServiceImpl implements FarmerService {
     }
 
     @Override
-    @Transactional
-    public void create(Farmer farmer) {
-        farmerRepository.create(farmer.getName(), farmer.getSurname(), farmer.getPhone(), farmer.getVillageId(), farmer.getCollectorId());
+    public Farmer create(Farmer farmer) {
+       return farmerRepository.save(farmer);
     }
 
     @Override
