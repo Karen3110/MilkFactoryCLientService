@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping("/api/farmer")
 public class FarmerController {
 
-
     private final FarmerService farmerService;
 
     private final MilkScheduleService milkScheduleService;
@@ -29,9 +28,9 @@ public class FarmerController {
         return ResponseEntity.ok(new PageResponse<>(farmerService.getAll(pageable)));
     }
 
-    @PutMapping("/{id}")
-    private ResponseEntity<Farmer> update(@PathVariable int id, @RequestBody Farmer farmer) throws ResponseException {
-        return ResponseEntity.ok(farmerService.update(id, farmer));
+    @GetMapping("/{id}/milk-schedule")
+    public ResponseEntity<List<MilkSchedule>> getByFarmerIdAndDate(@PathVariable("id") int farmerId, @RequestParam long start, @RequestParam long end) {
+        return ResponseEntity.ok(milkScheduleService.getByFarmerIdAndDate(farmerId, start, end));
     }
 
     @PostMapping("/add")
@@ -40,15 +39,16 @@ public class FarmerController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{id}")
+    private ResponseEntity<Farmer> update(@PathVariable int id, @RequestBody Farmer farmer) throws ResponseException {
+        return ResponseEntity.ok(farmerService.update(id, farmer));
+    }
+
     @DeleteMapping("/{id}")
     private ResponseEntity<Void> delete(@PathVariable int id) {
         farmerService.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}/milk-schedule")
-    public ResponseEntity<List<MilkSchedule>> getByFarmerIdAndDate(@PathVariable("id") int farmerId, @RequestParam long start, @RequestParam long end) {
-        return ResponseEntity.ok(milkScheduleService.getByFarmerIdAndDate(farmerId, start, end));
-    }
 
 }

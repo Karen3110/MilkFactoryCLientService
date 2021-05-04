@@ -14,6 +14,8 @@ public interface CollectorRepository extends JpaRepository<Collector, Integer> {
 
     List<Collector> findAllByVillageId(int id);
 
+    Collector getCollectorByNameAndSurnameAndVillageId(String name, String surname,int villageId);
+
     @Modifying
     @Query(value = "INSERT INTO collector VALUES (0,:name ,:surname,:villageId)", nativeQuery = true)
     void create(@Param("name") String name, @Param("surname") String surname, @Param("villageId") int villageId);

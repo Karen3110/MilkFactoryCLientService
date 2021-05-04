@@ -1,9 +1,7 @@
 package ge.alpin.javakhet.milkfactory.service.impl;
 
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
-import ge.alpin.javakhet.milkfactory.model.Constants;
 import ge.alpin.javakhet.milkfactory.model.MilkSchedule;
-import ge.alpin.javakhet.milkfactory.repository.ConstantsRepository;
 import ge.alpin.javakhet.milkfactory.repository.MilkScheduleRepository;
 import ge.alpin.javakhet.milkfactory.service.MilkScheduleService;
 import lombok.RequiredArgsConstructor;

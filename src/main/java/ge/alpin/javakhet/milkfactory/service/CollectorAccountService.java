@@ -15,4 +15,6 @@ public interface CollectorAccountService {
     Page<CollectorAccount> getAll(Pageable pageable);
 
     CollectorAccount getByUserNameAndPassword(SignInDto signInDto);
+
+    CollectorAccount create(CollectorAccount collectorAccount) throws DuplicateException;
 }

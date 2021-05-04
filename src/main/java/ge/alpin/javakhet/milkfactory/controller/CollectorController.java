@@ -37,9 +37,9 @@ public class CollectorController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity create(@RequestBody Collector collector){
+    public ResponseEntity create(@RequestBody Collector collector) {
         collectorService.create(collector);
-        return  ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")

@@ -53,7 +53,8 @@ public class CollectorServiceImpl implements CollectorService {
     @Override
     @Transactional
     public void create(Collector collector) {
-        collectorRepository.create(collector.getName(),collector.getSurname(),collector.getVillageId());
+        collectorRepository.create(collector.getName(), collector.getSurname(), collector.getVillageId());
+
     }
 
 }

@@ -43,6 +43,13 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
 
     @Override
     public CollectorAccount getByUserNameAndPassword(SignInDto signInDto) {
-        return collectorAccountRepository.findAllByLoginAndPassword(signInDto.getLogin(),signInDto.getPassword());
+        return collectorAccountRepository.findAllByLoginAndPassword(signInDto.getLogin(), signInDto.getPassword());
+    }
+
+    @Override
+
+    public CollectorAccount create(CollectorAccount collectorAccount) {
+        collectorAccountRepository.create(collectorAccount.getCollectorId(), collectorAccount.getLogin(), collectorAccount.getPassword());
+        return collectorAccount;
     }
 }

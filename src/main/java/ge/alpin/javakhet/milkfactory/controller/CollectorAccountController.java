@@ -20,8 +20,13 @@ public class CollectorAccountController {
     @Autowired
     private CollectorAccountService collectorAccountService;
 
+    @PostMapping("/add")
+    public  ResponseEntity<CollectorAccount> create(CollectorAccount collectorAccount)  {
+        return  ResponseEntity.ok(collectorAccountService.create(collectorAccount));
+    }
+
     @PostMapping("/login")
-    private ResponseEntity<CollectorAccount> signIn(@RequestBody SignInDto signInDto){
+    public ResponseEntity<CollectorAccount> signIn(@RequestBody SignInDto signInDto){
         return ResponseEntity.ok(collectorAccountService.getByUserNameAndPassword(signInDto));
     }
 

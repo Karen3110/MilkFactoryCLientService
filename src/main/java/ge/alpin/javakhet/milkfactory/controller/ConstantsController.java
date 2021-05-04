@@ -2,7 +2,6 @@ package ge.alpin.javakhet.milkfactory.controller;
 
 import ge.alpin.javakhet.milkfactory.commons.model.PageResponse;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
-import ge.alpin.javakhet.milkfactory.model.Collector;
 import ge.alpin.javakhet.milkfactory.model.Constants;
 import ge.alpin.javakhet.milkfactory.service.ConstantsService;
 import org.springframework.beans.factory.annotation.Autowired;
