@@ -3,18 +3,13 @@ package ge.alpin.javakhet.milkfactory.model.dto;
 import lombok.Data;
 
 
-
 @Data
 public class ToCountDataDto {
 
-   private int villageId;
+    private int farmerId;
 
-   private int collectorId;
+    private long start;
 
-   private int farmerId;
-
-   private long start;
-
-   private long end;
+    private long end;
 
 }

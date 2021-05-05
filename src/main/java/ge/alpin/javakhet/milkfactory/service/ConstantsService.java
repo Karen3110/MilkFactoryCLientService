@@ -10,11 +10,12 @@ import java.util.List;
 public interface ConstantsService {
 
     List<Constants> getAll();
+
     Page<Constants> getAll(Pageable pageable);
 
-    Constants getByName(String name);
-
     Constants getById(int id) throws ResponseException;
+
+    Constants getByName(String name);
 
     Constants create(Constants constants);
 

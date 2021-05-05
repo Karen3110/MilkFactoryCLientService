@@ -33,6 +33,11 @@ public class FarmerController {
         return ResponseEntity.ok(milkScheduleService.getByFarmerIdAndDate(farmerId, start, end));
     }
 
+    @GetMapping("/{phone}")
+    public ResponseEntity<Farmer> getFarmerByPhone(@PathVariable("phone") String phone) {
+        return ResponseEntity.ok(farmerService.getFarmerByPhone(phone));
+    }
+
     @PostMapping("/add")
     private ResponseEntity<Farmer> create(@RequestBody Farmer farmer) {
         farmerService.create(farmer);

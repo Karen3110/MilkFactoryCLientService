@@ -11,10 +11,8 @@ public class SearchRequest {
     private List<SearchCriteria> criteria;
 
 
-
-
-    public List<SearchCriteria> getCriteria(){
-        if (criteria == null){
+    public List<SearchCriteria> getCriteria() {
+        if (criteria == null) {
             criteria = Collections.emptyList();
         }
         return criteria;

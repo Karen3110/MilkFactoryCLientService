@@ -17,7 +17,6 @@ import java.util.Date;
 public class ResponseExceptionHandler {
 
 
-
     @ExceptionHandler(ResponseException.class)
     public ResponseEntity<ErrorResponse> handleException(ResponseException exception, HttpServletRequest webRequest) {
         ErrorResponse responseDto = new ErrorResponse();

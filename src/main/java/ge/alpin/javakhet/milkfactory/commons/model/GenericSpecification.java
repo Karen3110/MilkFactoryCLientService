@@ -29,13 +29,13 @@ public class GenericSpecification<T> implements Specification<T> {
 
             switch (criteria.getOperation()) {
                 case MORE:
-                    predicates.add(builder.greaterThan(root.get(criteria.getName()),criteria.getValue().toString()));
+                    predicates.add(builder.greaterThan(root.get(criteria.getName()), criteria.getValue().toString()));
                     break;
                 case LESS:
                     predicates.add(builder.lessThan(root.get(criteria.getName()), criteria.getValue().toString()));
                     break;
                 case EQUALS:
-                    predicates.add(builder.equal(getPath(root,criteria.getName()), criteria.getValue()));
+                    predicates.add(builder.equal(getPath(root, criteria.getName()), criteria.getValue()));
                     break;
                 case LIKE:
                     predicates.add(builder.like(builder.lower(root.get(criteria.getName())), "%" + criteria.getValue().toString().toLowerCase() + "%"));
@@ -45,9 +45,9 @@ public class GenericSpecification<T> implements Specification<T> {
                     break;
                 case BETWEEN:
                     List<Long> value = (List<Long>) criteria.getValue();
-                    predicates.add(builder.between(root.get(criteria.getName()),value.get(0),value.get(1)));
+                    predicates.add(builder.between(root.get(criteria.getName()), value.get(0), value.get(1)));
                     break;
-             }
+            }
 
         }
 
@@ -55,11 +55,11 @@ public class GenericSpecification<T> implements Specification<T> {
     }
 
 
-    private Path<T> getPath(Root<T> root, String name){
+    private Path<T> getPath(Root<T> root, String name) {
         String[] paths = name.split("\\.");
         Path<T> result = root;
-        for (String path : paths){
-           result = result.get(path);
+        for (String path : paths) {
+            result = result.get(path);
         }
         return result;
     }

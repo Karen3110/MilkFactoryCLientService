@@ -21,24 +21,24 @@ public class CollectorAccountController {
     private CollectorAccountService collectorAccountService;
 
     @PostMapping("/add")
-    public  ResponseEntity<CollectorAccount> create(@RequestBody CollectorAccount collectorAccount)  {
-        return  ResponseEntity.ok(collectorAccountService.create(collectorAccount));
+    public ResponseEntity<CollectorAccount> create(@RequestBody CollectorAccount collectorAccount) {
+        return ResponseEntity.ok(collectorAccountService.create(collectorAccount));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<CollectorAccount> signIn(@RequestBody SignInDto signInDto){
+    public ResponseEntity<CollectorAccount> signIn(@RequestBody SignInDto signInDto) {
         return ResponseEntity.ok(collectorAccountService.getByUserNameAndPassword(signInDto));
     }
 
 
     @GetMapping("/list")
-    public ResponseEntity<PageResponse<CollectorAccount>> getAll(@PageableDefault Pageable pageable){
+    public ResponseEntity<PageResponse<CollectorAccount>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok(new PageResponse<>(collectorAccountService.getAll(pageable)));
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void>  delete(@PathVariable int id){
+    public ResponseEntity<Void> delete(@PathVariable int id) {
         collectorAccountService.delete(id);
         return ResponseEntity.ok().build();
     }
@@ -46,10 +46,8 @@ public class CollectorAccountController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CollectorAccount> update(@PathVariable int id, @RequestBody CollectorAccount collectorAccount) throws ResponseException {
-        return ResponseEntity.ok(collectorAccountService.update(id,collectorAccount));
+        return ResponseEntity.ok(collectorAccountService.update(id, collectorAccount));
     }
-
-
 
 
 }

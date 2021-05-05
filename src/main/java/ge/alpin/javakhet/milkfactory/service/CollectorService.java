@@ -5,12 +5,7 @@ import ge.alpin.javakhet.milkfactory.model.Collector;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public interface CollectorService {
-
-    List<Collector> getByVillageId(int villageID);
-
 
     void delete(int id);
 
@@ -18,5 +13,5 @@ public interface CollectorService {
 
     Page<Collector> getAll(Pageable pageable);
 
-    Collector create(Collector collector) ;
+    Collector create(Collector collector);
 }

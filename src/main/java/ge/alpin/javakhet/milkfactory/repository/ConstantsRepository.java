@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ConstantsRepository extends JpaRepository<Constants, Integer> {
 
     Constants getByName(String name);
+
     void deleteById(int id);
 
 

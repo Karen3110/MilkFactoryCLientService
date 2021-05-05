@@ -16,5 +16,5 @@ public interface CollectorAccountService {
 
     CollectorAccount getByUserNameAndPassword(SignInDto signInDto);
 
-    CollectorAccount create(CollectorAccount collectorAccount) ;
+    CollectorAccount create(CollectorAccount collectorAccount);
 }

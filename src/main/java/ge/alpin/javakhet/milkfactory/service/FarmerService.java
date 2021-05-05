@@ -12,11 +12,15 @@ public interface FarmerService {
 
     void delete(int id);
 
-    Farmer create (Farmer farmer);
+    Farmer create(Farmer farmer);
 
     Farmer update(int id, Farmer farmer) throws ResponseException;
 
     Page<Farmer> getAll(Pageable pageable);
 
     List<Farmer> getAllByCollectorId(int collectorId);
+
+    Farmer getFarmerByPhone(String phone);
+
+    List<Farmer> getByVillageId(int villageId);
 }

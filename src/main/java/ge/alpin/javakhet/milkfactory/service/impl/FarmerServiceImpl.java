@@ -31,7 +31,7 @@ public class FarmerServiceImpl implements FarmerService {
 
     @Override
     public Farmer create(Farmer farmer) {
-       return farmerRepository.save(farmer);
+        return farmerRepository.save(farmer);
     }
 
     @Override
@@ -56,4 +56,16 @@ public class FarmerServiceImpl implements FarmerService {
     public List<Farmer> getAllByCollectorId(int collectorId) {
         return farmerRepository.getAllByCollectorId(collectorId);
     }
+
+    @Override
+    public Farmer getFarmerByPhone(String phone) {
+        return farmerRepository.getFarmerByPhone(phone);
+    }
+
+    @Override
+    public List<Farmer> getByVillageId(int villageId) {
+        return farmerRepository.getAllByVillageIdOrderBySurname(villageId);
+    }
+
+
 }

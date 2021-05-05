@@ -20,7 +20,7 @@ public class PageResponse<T> {
     private boolean last;
 
 
-    public PageResponse(Page<T> page){
+    public PageResponse(Page<T> page) {
         this.content = page.getContent();
         this.last = page.isLast();
         this.pageNumber = page.getNumber();

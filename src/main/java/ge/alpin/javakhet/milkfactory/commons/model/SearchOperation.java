@@ -10,5 +10,5 @@ public enum SearchOperation {
     BEFORE,
     BETWEEN,
     EXIST,
-    IN;
+    IN
 }
