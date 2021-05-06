@@ -5,6 +5,7 @@ import ge.alpin.javakhet.milkfactory.model.Village;
 import ge.alpin.javakhet.milkfactory.repository.VillageRepository;
 import ge.alpin.javakhet.milkfactory.service.VillageService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,9 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class VillageServiceImpl implements VillageService {
 
-
+    @Autowired
     private final VillageRepository villageRepository;
-
 
     @Override
     public void delete(int id) {
@@ -32,7 +32,6 @@ public class VillageServiceImpl implements VillageService {
         return fromDb;
     }
 
-
     @Override
     public Page<Village> getAll(Pageable pageable) {
         return villageRepository.findAll(pageable);
@@ -42,6 +41,5 @@ public class VillageServiceImpl implements VillageService {
     public Village create(Village village) {
         return villageRepository.save(village);
     }
-
 
 }

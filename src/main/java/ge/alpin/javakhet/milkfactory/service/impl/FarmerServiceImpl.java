@@ -19,10 +19,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FarmerServiceImpl implements FarmerService {
 
-
     @Autowired
     private FarmerRepository farmerRepository;
-
 
     @Override
     public void delete(int id) {
@@ -43,7 +41,6 @@ public class FarmerServiceImpl implements FarmerService {
         fromDb.setVillageId(farmer.getVillageId());
         fromDb.setCollectorId(farmer.getCollectorId());
         fromDb.setPhone(farmer.getPhone());
-
         return fromDb;
     }
 
@@ -66,6 +63,4 @@ public class FarmerServiceImpl implements FarmerService {
     public List<Farmer> getByVillageId(int villageId) {
         return farmerRepository.getAllByVillageIdOrderBySurname(villageId);
     }
-
-
 }

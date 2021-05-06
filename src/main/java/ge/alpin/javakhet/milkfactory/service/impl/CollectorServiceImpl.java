@@ -19,11 +19,9 @@ public class CollectorServiceImpl implements CollectorService {
     @Autowired
     private final CollectorRepository collectorRepository;
 
-
     @Override
     public Collector create(Collector collector) {
         return collectorRepository.save(collector);
-
     }
 
     @Override
@@ -40,11 +38,9 @@ public class CollectorServiceImpl implements CollectorService {
         collectorRepository.deleteById(id);
     }
 
-
     @Override
     public Page<Collector> getAll(Pageable pageable) {
         return collectorRepository.findAll(pageable);
     }
-
 
 }

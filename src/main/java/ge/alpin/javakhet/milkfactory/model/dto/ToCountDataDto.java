@@ -11,5 +11,4 @@ public class ToCountDataDto {
     private long start;
 
     private long end;
-
 }

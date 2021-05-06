@@ -16,15 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CollectorAccountServiceImpl implements CollectorAccountService {
 
-
     private final CollectorAccountRepository collectorAccountRepository;
-
 
     @Override
     public void delete(int id) {
         collectorAccountRepository.deleteById(id);
     }
-
 
     @Override
     @Transactional
@@ -48,7 +45,6 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
 
     @Override
     public CollectorAccount create(CollectorAccount collectorAccount) {
-
         return collectorAccountRepository.save(collectorAccount);
     }
 }

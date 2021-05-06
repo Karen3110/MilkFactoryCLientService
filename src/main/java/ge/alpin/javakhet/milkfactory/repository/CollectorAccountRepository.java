@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CollectorAccountRepository extends JpaRepository<CollectorAccount, Integer> {
 
-
     CollectorAccount findAllByLoginAndPassword(String login, String password);
 
 }

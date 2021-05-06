@@ -39,7 +39,6 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
         return milkScheduleRepository.findAll(pageable);
     }
 
-
     @Override
     public MilkSchedule create(MilkSchedule milkSchedule) {
         return milkScheduleRepository.save(milkSchedule);
@@ -55,6 +54,4 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
     public List<MilkSchedule> getByFarmerIdAndDate(int farmerId, long start, long end) {
         return milkScheduleRepository.getAllByFarmerIdAndDateBetween(farmerId, start, end);
     }
-
-
 }

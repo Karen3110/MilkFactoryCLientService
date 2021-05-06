@@ -9,9 +9,7 @@ import org.springframework.http.HttpStatus;
 @EqualsAndHashCode(callSuper = true)
 public class ResponseException extends Exception {
 
-
     private HttpStatus status;
-
 
     public ResponseException(HttpStatus status, String message) {
         super(message);
@@ -21,7 +19,6 @@ public class ResponseException extends Exception {
     public ResponseException(HttpStatus status) {
         this.status = status;
     }
-
 
     public static void check(boolean expresion, HttpStatus status, String message) throws ResponseException {
         if (expresion) {

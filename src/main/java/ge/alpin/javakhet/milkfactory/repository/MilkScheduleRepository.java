@@ -10,9 +10,7 @@ import java.util.List;
 
 public interface MilkScheduleRepository extends JpaRepository<MilkSchedule, Integer> {
 
-
     List<MilkSchedule> getAllByFarmerIdAndDateBetween(int farmerID, long dateBegin, long dateEnd);
-
 
     @Modifying
     @Query(value = "UPDATE  milk_schedule SET calculated =  :calculated where  farmer_id = :farmerId AND date BETWEEN  :start AND :end ", nativeQuery = true)

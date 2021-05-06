@@ -1,6 +1,5 @@
 package ge.alpin.javakhet.milkfactory.controller;
 
-
 import ge.alpin.javakhet.milkfactory.commons.model.PageResponse;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.CollectorAccount;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/collector-account")
 public class CollectorAccountController {
 
-
     @Autowired
     private CollectorAccountService collectorAccountService;
 
@@ -30,12 +28,10 @@ public class CollectorAccountController {
         return ResponseEntity.ok(collectorAccountService.getByUserNameAndPassword(signInDto));
     }
 
-
     @GetMapping("/list")
     public ResponseEntity<PageResponse<CollectorAccount>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok(new PageResponse<>(collectorAccountService.getAll(pageable)));
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id) {
@@ -43,11 +39,9 @@ public class CollectorAccountController {
         return ResponseEntity.ok().build();
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<CollectorAccount> update(@PathVariable int id, @RequestBody CollectorAccount collectorAccount) throws ResponseException {
         return ResponseEntity.ok(collectorAccountService.update(id, collectorAccount));
     }
-
 
 }

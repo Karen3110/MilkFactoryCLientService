@@ -1,6 +1,5 @@
 package ge.alpin.javakhet.milkfactory.controller;
 
-
 import ge.alpin.javakhet.milkfactory.commons.model.PageResponse;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.MilkSchedule;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/milk-schedule")
 public class MilkScheduleController {
-
-
     private final MilkScheduleService milkScheduleService;
 
     @GetMapping("/list")

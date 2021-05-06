@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     private final MilkScheduleRepository milkScheduleRepository;
 
-
     @GetMapping("/test1")
     ResponseEntity test1() {
         return new ResponseEntity(Shift.AFTERNOON.toString(), HttpStatus.OK);

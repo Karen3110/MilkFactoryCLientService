@@ -8,5 +8,4 @@ public class SignInDto {
     private String login;
 
     private String password;
-
 }

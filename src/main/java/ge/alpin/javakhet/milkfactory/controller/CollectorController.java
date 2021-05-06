@@ -18,13 +18,11 @@ import java.util.List;
 @RequestMapping("/api/collector")
 public class CollectorController {
 
-
     @Autowired
     private CollectorService collectorService;
 
     @Autowired
     private FarmerService farmerService;
-
 
     @GetMapping("/list")
     public ResponseEntity<PageResponse<Collector>> getAll(@PageableDefault Pageable pageable) {
@@ -52,6 +50,4 @@ public class CollectorController {
         collectorService.delete(id);
         return ResponseEntity.ok().build();
     }
-
-
 }

@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("/api/village")
 public class VillageController {
 
-
     @Autowired
     private FarmerService farmerService;
 
@@ -53,5 +52,4 @@ public class VillageController {
         villageService.delete(villageId);
         return ResponseEntity.ok().build();
     }
-
 }

@@ -55,5 +55,4 @@ public class FarmerController {
         return ResponseEntity.ok().build();
     }
 
-
 }
