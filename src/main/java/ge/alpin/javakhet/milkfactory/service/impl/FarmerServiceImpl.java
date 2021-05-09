@@ -63,4 +63,9 @@ public class FarmerServiceImpl implements FarmerService {
     public List<Farmer> getByVillageId(int villageId) {
         return farmerRepository.getAllByVillageIdOrderBySurname(villageId);
     }
+
+    @Override
+    public Farmer getById(int id) throws ResponseException {
+        return farmerRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+    }
 }

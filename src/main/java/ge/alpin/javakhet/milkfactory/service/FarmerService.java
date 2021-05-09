@@ -23,4 +23,6 @@ public interface FarmerService {
     Farmer getFarmerByPhone(String phone);
 
     List<Farmer> getByVillageId(int villageId);
+
+    Farmer getById(int id) throws ResponseException;
 }

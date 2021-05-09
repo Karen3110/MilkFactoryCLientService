@@ -14,4 +14,6 @@ public interface CollectorService {
     Page<Collector> getAll(Pageable pageable);
 
     Collector create(Collector collector);
+
+    Collector getById(int id) throws ResponseException;
 }

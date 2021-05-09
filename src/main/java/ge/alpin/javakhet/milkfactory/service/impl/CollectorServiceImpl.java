@@ -25,6 +25,11 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
+    public Collector getById(int id) throws ResponseException {
+        return collectorRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
     @Transactional
     public Collector update(int id, Collector collector) throws ResponseException {
         Collector fromDb = collectorRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));

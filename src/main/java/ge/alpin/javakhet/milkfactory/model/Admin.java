@@ -19,7 +19,7 @@ public class Admin {
 
     private String surname;
 
-    private String username;
+    private String login;
 
     private String password;
 

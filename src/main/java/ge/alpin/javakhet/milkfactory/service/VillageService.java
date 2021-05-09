@@ -13,6 +13,8 @@ public interface VillageService {
     Page<Village> getAll(Pageable pageable);
 
     Village create(Village village);
+
+    Village getById(int id) throws ResponseException;
 }
 
 

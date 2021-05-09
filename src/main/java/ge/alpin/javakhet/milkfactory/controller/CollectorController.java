@@ -29,6 +29,11 @@ public class CollectorController {
         return ResponseEntity.ok(new PageResponse<>(collectorService.getAll(pageable)));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Collector> getById(@PathVariable int id) throws ResponseException {
+        return ResponseEntity.ok(collectorService.getById(id));
+    }
+
     @GetMapping("/{id}/farmers")
     public ResponseEntity<List<Farmer>> getByCollectorId(@PathVariable int id) {
         return ResponseEntity.ok(farmerService.getAllByCollectorId(id));

@@ -12,9 +12,11 @@ public interface CollectorAccountService {
 
     CollectorAccount update(int id, CollectorAccount collectorAccount) throws ResponseException;
 
+    CollectorAccount getById(int id) throws ResponseException;
+
     Page<CollectorAccount> getAll(Pageable pageable);
 
-    CollectorAccount getByUserNameAndPassword(SignInDto signInDto);
+    CollectorAccount getByLoginAndPassword(SignInDto signInDto) throws ResponseException;
 
     CollectorAccount create(CollectorAccount collectorAccount);
 }

@@ -24,13 +24,18 @@ public class CollectorAccountController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<CollectorAccount> signIn(@RequestBody SignInDto signInDto) {
-        return ResponseEntity.ok(collectorAccountService.getByUserNameAndPassword(signInDto));
+    public ResponseEntity<CollectorAccount> signIn(@RequestBody SignInDto signInDto) throws ResponseException {
+        return ResponseEntity.ok(collectorAccountService.getByLoginAndPassword(signInDto));
     }
 
     @GetMapping("/list")
     public ResponseEntity<PageResponse<CollectorAccount>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok(new PageResponse<>(collectorAccountService.getAll(pageable)));
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<CollectorAccount> getById(@PathVariable int id) throws ResponseException {
+        return ResponseEntity.ok(collectorAccountService.getById(id));
     }
 
     @DeleteMapping("/{id}")

@@ -34,13 +34,18 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
     }
 
     @Override
+    public CollectorAccount getById(int id) throws ResponseException {
+        return collectorAccountRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
     public Page<CollectorAccount> getAll(Pageable pageable) {
         return collectorAccountRepository.findAll(pageable);
     }
 
     @Override
-    public CollectorAccount getByUserNameAndPassword(SignInDto signInDto) {
-        return collectorAccountRepository.findAllByLoginAndPassword(signInDto.getLogin(), signInDto.getPassword());
+    public CollectorAccount getByLoginAndPassword(SignInDto signInDto) throws ResponseException {
+        return collectorAccountRepository.getByLoginAndPassword(signInDto.getLogin(), signInDto.getPassword()).orElseThrow(() -> new ResponseException(HttpStatus.UNAUTHORIZED, "Wrong login or password"));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ge.alpin.javakhet.milkfactory.controller;
 
+import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.Admin;
 import ge.alpin.javakhet.milkfactory.model.dto.SignInDto;
 import ge.alpin.javakhet.milkfactory.service.AdminService;
@@ -18,7 +19,7 @@ public class AdminAccountController {
 
 
     @PostMapping("/login")
-    ResponseEntity<Admin> login(@RequestBody SignInDto signInDto){
-        return ResponseEntity.ok(adminService.getByUserNameAndPassword(signInDto));
+    ResponseEntity<Admin> login(@RequestBody SignInDto signInDto) throws ResponseException {
+        return ResponseEntity.ok(adminService.getByLoginAndPassword(signInDto));
     }
 }

@@ -30,6 +30,11 @@ public class VillageController {
         return ResponseEntity.ok(new PageResponse<>(villageService.getAll(pageable)));
     }
 
+    @GetMapping("/id")
+    public ResponseEntity<Village> getById(@PathVariable int id) throws ResponseException {
+        return ResponseEntity.ok(villageService.getById(id));
+    }
+
     @GetMapping("/{id}/farmers")
     public ResponseEntity<List<Farmer>> getFarmersByVillage(@PathVariable("id") int villageId) {
         return ResponseEntity.ok(farmerService.getByVillageId(villageId));

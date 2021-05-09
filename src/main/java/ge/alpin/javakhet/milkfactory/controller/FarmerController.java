@@ -28,6 +28,11 @@ public class FarmerController {
         return ResponseEntity.ok(new PageResponse<>(farmerService.getAll(pageable)));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Farmer> getById(@PathVariable int id) throws ResponseException {
+        return ResponseEntity.ok(farmerService.getById(id));
+    }
+
     @GetMapping("/{id}/milk-schedule")
     public ResponseEntity<List<MilkSchedule>> getByFarmerIdAndDate(@PathVariable("id") int farmerId, @RequestParam long start, @RequestParam long end) {
         return ResponseEntity.ok(milkScheduleService.getByFarmerIdAndDate(farmerId, start, end));
