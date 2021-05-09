@@ -47,4 +47,6 @@ public class VillageServiceImpl implements VillageService {
         return villageRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
     }
 
+
+
 }

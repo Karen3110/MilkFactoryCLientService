@@ -4,6 +4,7 @@ import ge.alpin.javakhet.milkfactory.commons.model.PageResponse;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.Farmer;
 import ge.alpin.javakhet.milkfactory.model.MilkSchedule;
+import ge.alpin.javakhet.milkfactory.model.dto.ToCountDataDto;
 import ge.alpin.javakhet.milkfactory.service.FarmerService;
 import ge.alpin.javakhet.milkfactory.service.MilkScheduleService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,12 +35,18 @@ public class FarmerController {
         return ResponseEntity.ok(farmerService.getById(id));
     }
 
-    @GetMapping("/{id}/milk-schedule")
-    public ResponseEntity<List<MilkSchedule>> getByFarmerIdAndDate(@PathVariable("id") int farmerId, @RequestParam long start, @RequestParam long end) {
-        return ResponseEntity.ok(milkScheduleService.getByFarmerIdAndDate(farmerId, start, end));
+    @GetMapping("/{id}/full")
+    public ResponseEntity<Map<String, Object>> getByIdFulInfo(@PathVariable int id) throws ResponseException {
+        return ResponseEntity.ok(farmerService.getByIdFulInfo(id));
     }
 
-    @GetMapping("/{phone}")
+    @PostMapping("/milk-schedule")
+    public  ResponseEntity<Map<String, Object>> getToCalculateData(@RequestBody ToCountDataDto toCountDataDto) throws ResponseException {
+
+        return ResponseEntity.ok(milkScheduleService.getToCountData(toCountDataDto));
+    }
+
+    @GetMapping("/{phone}/phone")
     public ResponseEntity<Farmer> getFarmerByPhone(@PathVariable("phone") String phone) {
         return ResponseEntity.ok(farmerService.getFarmerByPhone(phone));
     }

@@ -3,7 +3,9 @@ package ge.alpin.javakhet.milkfactory.service.impl;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.Farmer;
 import ge.alpin.javakhet.milkfactory.repository.FarmerRepository;
+import ge.alpin.javakhet.milkfactory.service.CollectorService;
 import ge.alpin.javakhet.milkfactory.service.FarmerService;
+import ge.alpin.javakhet.milkfactory.service.VillageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -21,6 +25,12 @@ public class FarmerServiceImpl implements FarmerService {
 
     @Autowired
     private FarmerRepository farmerRepository;
+
+    @Autowired
+    private VillageService villageService;
+
+    @Autowired
+    private CollectorService collectorService;
 
     @Override
     public void delete(int id) {
@@ -67,5 +77,18 @@ public class FarmerServiceImpl implements FarmerService {
     @Override
     public Farmer getById(int id) throws ResponseException {
         return farmerRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
+    public Map<String, Object> getByIdFulInfo(int id) throws ResponseException {
+        Map<String, Object> data = new HashMap<>();
+        Farmer farmer = farmerRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        String villageName = villageService.getById(farmer.getVillageId()).getVillageName();
+        String collectorFulName = collectorService.getCollectorFulName(collectorService.getById(farmer.getCollectorId()));
+
+        data.put("farmer",farmer);
+        data.put("villageName",villageName);
+        data.put("collectorFulName",collectorFulName);
+        return data;
     }
 }

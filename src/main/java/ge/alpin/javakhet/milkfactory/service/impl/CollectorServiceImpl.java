@@ -2,6 +2,7 @@ package ge.alpin.javakhet.milkfactory.service.impl;
 
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.Collector;
+import ge.alpin.javakhet.milkfactory.model.CollectorAccount;
 import ge.alpin.javakhet.milkfactory.repository.CollectorRepository;
 import ge.alpin.javakhet.milkfactory.service.CollectorService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,11 @@ public class CollectorServiceImpl implements CollectorService {
     @Override
     public Collector getById(int id) throws ResponseException {
         return collectorRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
+    public String getCollectorFulName(Collector collector) {
+        return collector.getName()+" "+collector.getSurname();
     }
 
     @Override

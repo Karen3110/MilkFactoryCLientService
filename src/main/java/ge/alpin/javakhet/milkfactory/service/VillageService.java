@@ -15,6 +15,7 @@ public interface VillageService {
     Village create(Village village);
 
     Village getById(int id) throws ResponseException;
+
 }
 
 
