@@ -17,7 +17,7 @@ public interface CollectorAccountService {
 
     List<CollectorAccount> getAll(Pageable pageable);
 
-    CollectorAccount getByLoginAndPassword(SignInDto signInDto) throws ResponseException;
+    CollectorAccount signIn(SignInDto signInDto) throws ResponseException;
 
     CollectorAccount create(CollectorAccount collectorAccount);
 

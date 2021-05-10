@@ -10,10 +10,13 @@ import javax.persistence.Id;
 @Entity
 @Data
 public class Constants {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+
     String name;
+
     String value;
 
 }

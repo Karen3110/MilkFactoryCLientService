@@ -34,7 +34,9 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
     @Transactional
 
     public MilkSchedule update(int id, MilkSchedule milkSchedule) throws ResponseException {
-        MilkSchedule fromDb = milkScheduleRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        MilkSchedule fromDb = milkScheduleRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Id not found to update milk-schedule data"));
         fromDb.setCalculated(milkSchedule.isCalculated());
         fromDb.setShift(milkSchedule.getShift());
         fromDb.setCountKiloGram(milkSchedule.getCountKiloGram());
@@ -60,12 +62,14 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
     }
 
     @Override
-    public List<MilkSchedule> getByFarmerIdAndDate(int farmerId, long start, long end) {
-        return milkScheduleRepository.getAllByFarmerIdAndDateBetween(farmerId, start, end);
+    public List<MilkSchedule> getByFarmerIdAndDate(int farmerId, long start, long end) throws ResponseException {
+        return milkScheduleRepository
+                .getAllByFarmerIdAndDateBetween(farmerId, start, end)
+                .orElseThrow(()-> new ResponseException(HttpStatus.NOT_FOUND,"Farmer_id or Date not found to  get milk schedule data"));
     }
 
     @Override
-    public Map<String, Object> getToCountData(ToCountDataDto toCountDataDto) {
+    public Map<String, Object> getToCountData(ToCountDataDto toCountDataDto) throws ResponseException {
         Map<String, Object> data = new HashMap<>();
         List<MilkSchedule> milkList = getByFarmerIdAndDate(toCountDataDto.getFarmerId(), toCountDataDto.getStart(), toCountDataDto.getEnd());
         float sumLitre = sumMilliliter(milkList);

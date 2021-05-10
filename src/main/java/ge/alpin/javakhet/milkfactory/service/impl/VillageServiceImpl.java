@@ -27,7 +27,9 @@ public class VillageServiceImpl implements VillageService {
     @Override
     @Transactional
     public Village update(int id, Village village) throws ResponseException {
-        Village fromDb = villageRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        Village fromDb = villageRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Village_id not found to update village's data"));
         fromDb.setVillageName(village.getVillageName());
         return fromDb;
     }
@@ -44,7 +46,9 @@ public class VillageServiceImpl implements VillageService {
 
     @Override
     public Village getById(int id) throws ResponseException {
-        return villageRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        return villageRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Village_id not found to get village"));
     }
 
 

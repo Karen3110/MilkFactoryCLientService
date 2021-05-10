@@ -19,7 +19,7 @@ public interface MilkScheduleService {
 
     void calculateMilkBeginEnd(boolean calculate, int farmerId, long start, long end);
 
-    List<MilkSchedule> getByFarmerIdAndDate(int farmerId, long start, long end);
+    List<MilkSchedule> getByFarmerIdAndDate(int farmerId, long start, long end) throws ResponseException;
 
     Map<String, Object> getToCountData(ToCountDataDto toCountDataDto) throws ResponseException;
 

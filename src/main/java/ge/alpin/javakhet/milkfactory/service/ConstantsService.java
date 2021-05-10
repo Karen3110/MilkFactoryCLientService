@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ConstantsService {
 
@@ -16,7 +15,7 @@ public interface ConstantsService {
 
     Constants getById(int id) throws ResponseException;
 
-    Optional<Constants> getByName(String name) throws ResponseException;
+    Constants getByName(String name) throws ResponseException;
 
     Constants create(Constants constants);
 

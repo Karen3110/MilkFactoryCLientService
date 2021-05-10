@@ -5,7 +5,6 @@ import ge.alpin.javakhet.milkfactory.model.CollectorAccount;
 import ge.alpin.javakhet.milkfactory.model.dto.SignInDto;
 import ge.alpin.javakhet.milkfactory.repository.CollectorAccountRepository;
 import ge.alpin.javakhet.milkfactory.service.CollectorAccountService;
-import ge.alpin.javakhet.milkfactory.service.CollectorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -19,9 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CollectorAccountServiceImpl implements CollectorAccountService {
 
-
-    @Autowired
-    private final CollectorService collectorService;
     @Autowired
     private CollectorAccountRepository collectorAccountRepository;
 
@@ -33,8 +29,9 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
     @Override
     @Transactional
     public CollectorAccount update(int id, CollectorAccount collectorAccount) throws ResponseException {
-        CollectorAccount fromDb = collectorAccountRepository.findById(id)
-                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        CollectorAccount fromDb = collectorAccountRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Id not found for collector-account to update data"));
         fromDb.setLogin(collectorAccount.getLogin());
         fromDb.setPassword(collectorAccount.getPassword());
         return fromDb;
@@ -42,7 +39,9 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
 
     @Override
     public CollectorAccount getById(int id) throws ResponseException {
-        return collectorAccountRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        return collectorAccountRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Id not found to get collector-account"));
     }
 
     @Override
@@ -51,8 +50,10 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
     }
 
     @Override
-    public CollectorAccount getByLoginAndPassword(SignInDto signInDto) throws ResponseException {
-        return collectorAccountRepository.getByLoginAndPassword(signInDto.getLogin(), signInDto.getPassword()).orElseThrow(() -> new ResponseException(HttpStatus.UNAUTHORIZED, "Wrong login or password"));
+    public CollectorAccount signIn(SignInDto signInDto) throws ResponseException {
+        return collectorAccountRepository
+                .getByLoginAndPassword(signInDto.getLogin(), signInDto.getPassword())
+                .orElseThrow(() -> new ResponseException(HttpStatus.UNAUTHORIZED, "Wrong login or password for collector-account to SignIn"));
     }
 
     @Override

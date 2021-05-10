@@ -3,9 +3,7 @@ package ge.alpin.javakhet.milkfactory.service.impl;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.Farmer;
 import ge.alpin.javakhet.milkfactory.repository.FarmerRepository;
-import ge.alpin.javakhet.milkfactory.service.CollectorService;
 import ge.alpin.javakhet.milkfactory.service.FarmerService;
-import ge.alpin.javakhet.milkfactory.service.VillageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,12 +22,6 @@ public class FarmerServiceImpl implements FarmerService {
     @Autowired
     private FarmerRepository farmerRepository;
 
-    @Autowired
-    private VillageService villageService;
-
-    @Autowired
-    private CollectorService collectorService;
-
     @Override
     public void delete(int id) {
         farmerRepository.deleteById(id);
@@ -43,7 +35,9 @@ public class FarmerServiceImpl implements FarmerService {
     @Override
     @Transactional
     public Farmer update(int id, Farmer farmer) throws ResponseException {
-        Farmer fromDb = farmerRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        Farmer fromDb = farmerRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "id not found to update farmer's data"));
         fromDb.setName(farmer.getName());
         fromDb.setSurname(farmer.getSurname());
         fromDb.setVillageId(farmer.getVillageId());
@@ -58,23 +52,31 @@ public class FarmerServiceImpl implements FarmerService {
     }
 
     @Override
-    public List<Farmer> getAllByCollectorId(int collectorId) {
-        return farmerRepository.getAllByCollectorId(collectorId);
+    public List<Farmer> getAllByCollectorId(int collectorId) throws ResponseException {
+        return farmerRepository
+                .getAllByCollectorId(collectorId)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Collector_id not found to get collector's farmers"));
     }
 
     @Override
-    public Farmer getFarmerByPhone(String phone) {
-        return farmerRepository.getFarmerByPhone(phone);
+    public Farmer getFarmerByPhone(String phone) throws ResponseException {
+        return farmerRepository
+                .getFarmerByPhone(phone)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Phone Number not found to get farmer"));
     }
 
     @Override
-    public List<Farmer> getByVillageId(int villageId) {
-        return farmerRepository.getAllByVillageIdOrderBySurname(villageId);
+    public List<Farmer> getByVillageId(int villageId) throws ResponseException {
+        return farmerRepository
+                .getAllByVillageIdOrderBySurname(villageId)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Village_id not found to get village's farmers"));
     }
 
     @Override
     public Farmer getById(int id) throws ResponseException {
-        return farmerRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        return farmerRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Farmer_id not found to get farmer"));
     }
 
 

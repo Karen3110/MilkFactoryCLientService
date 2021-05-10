@@ -55,5 +55,4 @@ public class CollectorController {
         return ResponseEntity.ok(collectorService.getById(id));
     }
 
-
 }

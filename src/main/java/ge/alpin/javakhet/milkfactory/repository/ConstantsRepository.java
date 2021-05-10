@@ -7,10 +7,6 @@ import java.util.Optional;
 
 public interface ConstantsRepository extends JpaRepository<Constants, Integer> {
 
-
     Optional<Constants> getByName(String name);
-
-    void deleteById(int id);
-
 
 }

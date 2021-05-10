@@ -7,10 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MilkScheduleRepository extends JpaRepository<MilkSchedule, Integer> {
 
-    List<MilkSchedule> getAllByFarmerIdAndDateBetween(int farmerID, long dateBegin, long dateEnd);
+    Optional<List<MilkSchedule>> getAllByFarmerIdAndDateBetween(int farmerID, long dateBegin, long dateEnd);
 
     @Modifying
     @Query(value = "UPDATE  milk_schedule SET calculated =  :calculated where  farmer_id = :farmerId AND date BETWEEN  :start AND :end ", nativeQuery = true)

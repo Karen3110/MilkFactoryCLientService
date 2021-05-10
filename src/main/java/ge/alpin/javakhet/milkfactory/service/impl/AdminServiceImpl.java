@@ -17,9 +17,11 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private final AdminRepository adminRepository;
 
-
     @Override
     public Admin getByLoginAndPassword(SignInDto signInDto) throws ResponseException {
-        return adminRepository.getByLoginAndPassword(signInDto.getLogin(), signInDto.getPassword()).orElseThrow(() -> new ResponseException(HttpStatus.UNAUTHORIZED, "Wrong login or password"));
+        return adminRepository
+                .getByLoginAndPassword(signInDto.getLogin(), signInDto.getPassword())
+                .orElseThrow(() -> new ResponseException(HttpStatus.UNAUTHORIZED, "Wrong login or password for admin-account to SignIn"));
     }
+
 }

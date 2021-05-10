@@ -28,23 +28,31 @@ public class CollectorServiceImpl implements CollectorService {
 
     @Override
     public Collector getById(int id) throws ResponseException {
-        return collectorRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        return collectorRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Id not found to get collector"));
     }
 
     @Override
     public String getCollectorFulName(int collectorId) {
-        return collectorRepository.getOne(collectorId).getName() + " " + collectorRepository.getOne(collectorId).getSurname();
+        return collectorRepository.getOne(collectorId).getName()
+                + " "
+                + collectorRepository.getOne(collectorId).getSurname();
     }
 
     @Override
-    public List<Collector> getCollectorsByVillageId(int id) {
-        return collectorRepository.findAllByVillageId(id);
+    public List<Collector> getCollectorsByVillageId(int id) throws ResponseException {
+        return collectorRepository
+                .findAllByVillageId(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Village_id not found to get collectors list"));
     }
 
     @Override
     @Transactional
     public Collector update(int id, Collector collector) throws ResponseException {
-        Collector fromDb = collectorRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        Collector fromDb = collectorRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Collector_id not found to update collector's Data"));
         fromDb.setName(collector.getName());
         fromDb.setSurname(collector.getSurname());
         return fromDb;

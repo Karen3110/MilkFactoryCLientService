@@ -32,8 +32,7 @@ public class MilkScheduleController {
 
     @PostMapping("/add")
     public ResponseEntity<MilkSchedule> addMilkSchedule(@RequestBody MilkSchedule milkSchedule) {
-        milkScheduleService.create(milkSchedule);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(milkScheduleService.create(milkSchedule));
     }
 
     //  edited row on table

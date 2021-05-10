@@ -45,7 +45,7 @@ public class VillageController {
     }
 
     @GetMapping("/{id}/collectors")
-    public ResponseEntity<List<Collector>> getCollectorsByVillage(@PathVariable("id") int villageId) {
+    public ResponseEntity<List<Collector>> getCollectorsByVillage(@PathVariable("id") int villageId) throws ResponseException {
         return ResponseEntity.ok(collectorService.getCollectorsByVillageId(villageId));
     }
 

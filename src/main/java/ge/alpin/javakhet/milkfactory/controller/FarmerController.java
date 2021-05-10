@@ -62,5 +62,4 @@ public class FarmerController {
         return ResponseEntity.ok(farmerService.create(farmer));
     }
 
-
 }

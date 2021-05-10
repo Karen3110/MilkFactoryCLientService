@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
-
     Optional<Admin> getByLoginAndPassword(String login, String password);
 
 }

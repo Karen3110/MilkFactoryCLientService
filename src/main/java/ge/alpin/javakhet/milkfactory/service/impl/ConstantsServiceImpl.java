@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -33,14 +32,17 @@ public class ConstantsServiceImpl implements ConstantsService {
     }
 
     @Override
-    public Optional<Constants> getByName(String name) throws ResponseException {
-
-        return Optional.ofNullable(constantsRepository.getByName(name).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND)));
+    public Constants getByName(String name) throws ResponseException {
+        return constantsRepository
+                .getByName(name)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Constant name not found to get constant's object"));
     }
 
     @Override
     public Constants getById(int id) throws ResponseException {
-        return constantsRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        return constantsRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Id not found to get constant-object"));
     }
 
     @Override
@@ -51,7 +53,9 @@ public class ConstantsServiceImpl implements ConstantsService {
     @Override
     @Transactional
     public Constants update(int id, Constants constants) throws ResponseException {
-        Constants fromDb = constantsRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
+        Constants fromDb = constantsRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Id not found to update constant's data"));
         fromDb.setName(constants.getName());
         fromDb.setValue(constants.getValue());
         return fromDb;

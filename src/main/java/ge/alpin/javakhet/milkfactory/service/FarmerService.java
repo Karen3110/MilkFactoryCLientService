@@ -18,11 +18,11 @@ public interface FarmerService {
 
     Page<Farmer> getAll(Pageable pageable);
 
-    List<Farmer> getAllByCollectorId(int collectorId);
+    List<Farmer> getAllByCollectorId(int collectorId) throws ResponseException;
 
-    Farmer getFarmerByPhone(String phone);
+    Farmer getFarmerByPhone(String phone) throws ResponseException;
 
-    List<Farmer> getByVillageId(int villageId);
+    List<Farmer> getByVillageId(int villageId) throws ResponseException;
 
     Farmer getById(int id) throws ResponseException;
 
