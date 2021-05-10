@@ -35,7 +35,7 @@ public class VillageController {
     }
 
     @GetMapping("/{id}/farmers")
-    public ResponseEntity<List<Farmer>> getFarmersByVillage(@PathVariable("id") int villageId) {
+    public ResponseEntity<List<Farmer>> getFarmersByVillage(@PathVariable("id") int villageId) throws ResponseException {
         return ResponseEntity.ok(farmerService.getByVillageId(villageId));
     }
 

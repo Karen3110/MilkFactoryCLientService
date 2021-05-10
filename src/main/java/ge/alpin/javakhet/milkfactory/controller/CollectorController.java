@@ -30,7 +30,7 @@ public class CollectorController {
     }
 
     @GetMapping("/{id}/farmers")
-    public ResponseEntity<List<Farmer>> getFarmersByCollectorId(@PathVariable int id) {
+    public ResponseEntity<List<Farmer>> getFarmersByCollectorId(@PathVariable int id) throws ResponseException {
         return ResponseEntity.ok(farmerService.getAllByCollectorId(id));
     }
 

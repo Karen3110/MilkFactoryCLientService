@@ -10,8 +10,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/constants")
 public class ConstantsController {
@@ -24,7 +22,7 @@ public class ConstantsController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<Optional<Constants>> getConstantByName(@PathVariable String name) throws ResponseException {
+    public ResponseEntity<Constants> getConstantByName(@PathVariable String name) throws ResponseException {
         return ResponseEntity.ok(constantsService.getByName(name));
     }
 

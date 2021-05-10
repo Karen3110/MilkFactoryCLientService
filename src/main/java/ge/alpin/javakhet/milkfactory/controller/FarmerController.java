@@ -32,7 +32,7 @@ public class FarmerController {
     }
 
     @GetMapping("/{phone}/phone")
-    public ResponseEntity<Farmer> getFarmerByPhone(@PathVariable("phone") String phone) {
+    public ResponseEntity<Farmer> getFarmerByPhone(@PathVariable("phone") String phone) throws ResponseException {
         return ResponseEntity.ok(farmerService.getFarmerByPhone(phone));
     }
 
