@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -32,8 +33,9 @@ public class ConstantsServiceImpl implements ConstantsService {
     }
 
     @Override
-    public Constants getByName(String name) {
-        return constantsRepository.getByName(name);
+    public Optional<Constants> getByName(String name) throws ResponseException {
+
+        return Optional.ofNullable(constantsRepository.getByName(name).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND)));
     }
 
     @Override

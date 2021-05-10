@@ -7,6 +7,7 @@ import ge.alpin.javakhet.milkfactory.model.dto.ToCountDataDto;
 import ge.alpin.javakhet.milkfactory.model.lcp.Shift;
 import ge.alpin.javakhet.milkfactory.service.MilkScheduleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/milk-schedule")
 public class MilkScheduleController {
-    private final MilkScheduleService milkScheduleService;
+    @Autowired
+    private MilkScheduleService milkScheduleService;
 
     @GetMapping("/list")
     public ResponseEntity<PageResponse<MilkSchedule>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok(new PageResponse<>(milkScheduleService.getAll(pageable)));
     }
-
 
     @GetMapping("/shifts")
     public ResponseEntity<Shift[]> getShifts() {
@@ -46,6 +47,5 @@ public class MilkScheduleController {
         milkScheduleService.calculateMilkBeginEnd(calculate, countDataDto.getFarmerId(), countDataDto.getStart(), countDataDto.getEnd());
         return ResponseEntity.ok().build();
     }
-
 
 }

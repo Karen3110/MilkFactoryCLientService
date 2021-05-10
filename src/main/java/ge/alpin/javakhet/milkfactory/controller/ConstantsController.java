@@ -10,6 +10,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/constants")
 public class ConstantsController {
@@ -21,14 +23,8 @@ public class ConstantsController {
         return ResponseEntity.ok(new PageResponse<>(constantsService.getAll(pageable)));
     }
 
-    @PostMapping("/add")
-    public ResponseEntity create(@RequestBody Constants constants) {
-        constantsService.create(constants);
-        return ResponseEntity.ok().build();
-    }
-
     @GetMapping("/{name}")
-    public ResponseEntity<Constants> getConstant(@PathVariable String name) {
+    public ResponseEntity<Optional<Constants>> getConstantByName(@PathVariable String name) throws ResponseException {
         return ResponseEntity.ok(constantsService.getByName(name));
     }
 
@@ -41,6 +37,12 @@ public class ConstantsController {
     public ResponseEntity<Void> delete(@PathVariable int id) {
         constantsService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Constants> create(@RequestBody Constants constants) {
+        constantsService.create(constants);
+        return ResponseEntity.ok(constantsService.create(constants));
     }
 
 }
