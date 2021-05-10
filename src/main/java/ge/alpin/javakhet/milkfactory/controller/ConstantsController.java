@@ -18,7 +18,7 @@ public class ConstantsController {
 
     @GetMapping("/list")
     public ResponseEntity<PageResponse<Constants>> getAll(@PageableDefault Pageable pageable) {
-        return ResponseEntity.ok(new PageResponse<Constants>(constantsService.getAll(pageable)));
+        return ResponseEntity.ok(new PageResponse<>(constantsService.getAll(pageable)));
     }
 
     @PostMapping("/add")

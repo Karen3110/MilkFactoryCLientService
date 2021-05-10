@@ -2,8 +2,10 @@ package ge.alpin.javakhet.milkfactory.controller;
 
 import ge.alpin.javakhet.milkfactory.commons.model.PageResponse;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
+import ge.alpin.javakhet.milkfactory.model.Collector;
 import ge.alpin.javakhet.milkfactory.model.Farmer;
 import ge.alpin.javakhet.milkfactory.model.Village;
+import ge.alpin.javakhet.milkfactory.service.CollectorService;
 import ge.alpin.javakhet.milkfactory.service.FarmerService;
 import ge.alpin.javakhet.milkfactory.service.VillageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class VillageController {
     @Autowired
     private VillageService villageService;
 
+    @Autowired
+    private CollectorService collectorService;
+
 
     @GetMapping("/list")
     public ResponseEntity<PageResponse<Village>> getAll(@PageableDefault Pageable pageable) {
@@ -38,6 +43,11 @@ public class VillageController {
     @GetMapping("/{id}/farmers")
     public ResponseEntity<List<Farmer>> getFarmersByVillage(@PathVariable("id") int villageId) {
         return ResponseEntity.ok(farmerService.getByVillageId(villageId));
+    }
+
+    @GetMapping("/{id}/collectors")
+    public ResponseEntity<List<Collector>> getCollectorsByVillage(@PathVariable("id") int villageId) {
+        return ResponseEntity.ok(collectorService.getCollectorsByVillageId(villageId));
     }
 
     @PostMapping("/add")

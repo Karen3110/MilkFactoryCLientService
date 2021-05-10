@@ -65,13 +65,12 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
     }
 
     @Override
-    public Map<String, Object> getToCountData(ToCountDataDto toCountDataDto) throws ResponseException {
+    public Map<String, Object> getToCountData(ToCountDataDto toCountDataDto) {
         Map<String, Object> data = new HashMap<>();
         List<MilkSchedule> milkList = getByFarmerIdAndDate(toCountDataDto.getFarmerId(), toCountDataDto.getStart(), toCountDataDto.getEnd());
         float sumLitre = sumMilliliter(milkList);
         float sumKg = sumKilogram(milkList);
         float amount = sumAmount(milkList);
-
         data.put("milkList", milkList);
         data.put("sumLitre", sumLitre);
         data.put("sumKg", sumKg);
@@ -115,12 +114,12 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
     }
 
     @Override
-    public List<Map<String, Object>> getCollectorsListBeginEnd(List<MilkSchedule> lst) throws ResponseException {
+    public List<Map<String, Object>> getCollectorsListBeginEnd(List<MilkSchedule> lst) {
         List<Map<String, Object>> data = new LinkedList<>();
-        Map<String, Object> tempData ;
+        Map<String, Object> tempData;
 
 
-        long begin = lst.get(0).getDate();
+        long start = lst.get(0).getDate();
         long end = lst.get(0).getDate();
         int collectorId = lst.get(0).getCollectorId();
         boolean changed = false;
@@ -128,15 +127,14 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
             if (lst.get(i).getCollectorId() != collectorId) {
                 changed = true;
             }
-
             if (changed) {
                 tempData = new HashMap<>();
-                tempData.put("collector", collectorService.getCollectorFulName(collectorService.getById(collectorId)));
-                tempData.put("begin", begin);
+                tempData.put("collector", collectorService.getCollectorFulName(collectorId));
+                tempData.put("start", start);
                 tempData.put("end", end);
                 data.add(tempData);
                 changed = false;
-                begin = end = lst.get(i).getDate();
+                start = end = lst.get(i).getDate();
                 collectorId = lst.get(i).getCollectorId();
             } else {
                 end = lst.get(i).getDate();
@@ -144,11 +142,10 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
 
         }
         tempData = new HashMap<>();
-        tempData.put("collector", collectorService.getCollectorFulName(collectorService.getById(collectorId)));
-        tempData.put("begin", begin);
+        tempData.put("collector", collectorService.getCollectorFulName(collectorId));
+        tempData.put("start", start);
         tempData.put("end", end);
         data.add(tempData);
-
 
         return data;
     }

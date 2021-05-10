@@ -30,5 +30,5 @@ public interface MilkScheduleService {
 
     float sumAmount(List<MilkSchedule> data);
 
-    List<Map<String,Object>> getCollectorsListBeginEnd(List<MilkSchedule> data) throws ResponseException;
+    List<Map<String, Object>> getCollectorsListBeginEnd(List<MilkSchedule> data) throws ResponseException;
 }

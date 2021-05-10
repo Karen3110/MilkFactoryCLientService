@@ -3,7 +3,6 @@ package ge.alpin.javakhet.milkfactory.controller;
 import ge.alpin.javakhet.milkfactory.commons.model.PageResponse;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.Farmer;
-import ge.alpin.javakhet.milkfactory.model.MilkSchedule;
 import ge.alpin.javakhet.milkfactory.model.dto.ToCountDataDto;
 import ge.alpin.javakhet.milkfactory.service.FarmerService;
 import ge.alpin.javakhet.milkfactory.service.MilkScheduleService;
@@ -13,7 +12,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -35,13 +33,9 @@ public class FarmerController {
         return ResponseEntity.ok(farmerService.getById(id));
     }
 
-    @GetMapping("/{id}/full")
-    public ResponseEntity<Map<String, Object>> getByIdFulInfo(@PathVariable int id) throws ResponseException {
-        return ResponseEntity.ok(farmerService.getByIdFulInfo(id));
-    }
 
     @PostMapping("/milk-schedule")
-    public  ResponseEntity<Map<String, Object>> getToCalculateData(@RequestBody ToCountDataDto toCountDataDto) throws ResponseException {
+    public ResponseEntity<Map<String, Object>> getToCalculateData(@RequestBody ToCountDataDto toCountDataDto) throws ResponseException {
 
         return ResponseEntity.ok(milkScheduleService.getToCountData(toCountDataDto));
     }

@@ -14,9 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Service
@@ -79,16 +77,5 @@ public class FarmerServiceImpl implements FarmerService {
         return farmerRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
     }
 
-    @Override
-    public Map<String, Object> getByIdFulInfo(int id) throws ResponseException {
-        Map<String, Object> data = new HashMap<>();
-        Farmer farmer = farmerRepository.findById(id).orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND));
-        String villageName = villageService.getById(farmer.getVillageId()).getVillageName();
-        String collectorFulName = collectorService.getCollectorFulName(collectorService.getById(farmer.getCollectorId()));
 
-        data.put("farmer",farmer);
-        data.put("villageName",villageName);
-        data.put("collectorFulName",collectorFulName);
-        return data;
-    }
 }

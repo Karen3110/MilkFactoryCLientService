@@ -2,7 +2,6 @@ package ge.alpin.javakhet.milkfactory.service.impl;
 
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.Collector;
-import ge.alpin.javakhet.milkfactory.model.CollectorAccount;
 import ge.alpin.javakhet.milkfactory.repository.CollectorRepository;
 import ge.alpin.javakhet.milkfactory.service.CollectorService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,8 +32,13 @@ public class CollectorServiceImpl implements CollectorService {
     }
 
     @Override
-    public String getCollectorFulName(Collector collector) {
-        return collector.getName()+" "+collector.getSurname();
+    public String getCollectorFulName(int collectorId) {
+        return collectorRepository.getOne(collectorId).getName() + " " + collectorRepository.getOne(collectorId).getSurname();
+    }
+
+    @Override
+    public List<Collector> getCollectorsByVillageId(int id) {
+        return collectorRepository.findAllByVillageId(id);
     }
 
     @Override

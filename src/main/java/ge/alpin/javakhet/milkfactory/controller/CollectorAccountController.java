@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/collector-account")
@@ -35,17 +34,13 @@ public class CollectorAccountController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Map<String, Object>>> getAll(@PageableDefault Pageable pageable) {
-
-
-        return ResponseEntity.ok(collectorAccountService.getAllWithFulInfo(collectorAccountService.getAll(pageable)));
+    public ResponseEntity<List<CollectorAccount>> getAll(@PageableDefault Pageable pageable) {
+        return ResponseEntity.ok(collectorAccountService.getAll(pageable));
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Map<String, Object>> getById(@PathVariable int id) throws ResponseException {
-
-
-        return ResponseEntity.ok(collectorAccountService.getFulInfo(collectorAccountService.getById(id)));
+    public ResponseEntity<CollectorAccount> getById(@PathVariable int id) throws ResponseException {
+        return ResponseEntity.ok(collectorAccountService.getById(id));
     }
 
     @DeleteMapping("/{id}")

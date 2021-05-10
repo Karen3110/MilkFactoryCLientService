@@ -3,11 +3,9 @@ package ge.alpin.javakhet.milkfactory.service;
 import ge.alpin.javakhet.milkfactory.commons.model.ResponseException;
 import ge.alpin.javakhet.milkfactory.model.CollectorAccount;
 import ge.alpin.javakhet.milkfactory.model.dto.SignInDto;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CollectorAccountService {
 
@@ -23,8 +21,4 @@ public interface CollectorAccountService {
 
     CollectorAccount create(CollectorAccount collectorAccount);
 
-
-    List<Map<String,Object>> getAllWithFulInfo(List<CollectorAccount> collectorAccounts);
-
-    Map<String,Object> getFulInfo(CollectorAccount collectorAccount);
 }

@@ -12,9 +12,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/milk-schedule")
@@ -25,7 +22,6 @@ public class MilkScheduleController {
     public ResponseEntity<PageResponse<MilkSchedule>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok(new PageResponse<>(milkScheduleService.getAll(pageable)));
     }
-
 
 
     @GetMapping("/shifts")
@@ -50,7 +46,6 @@ public class MilkScheduleController {
         milkScheduleService.calculateMilkBeginEnd(calculate, countDataDto.getFarmerId(), countDataDto.getStart(), countDataDto.getEnd());
         return ResponseEntity.ok().build();
     }
-
 
 
 }
