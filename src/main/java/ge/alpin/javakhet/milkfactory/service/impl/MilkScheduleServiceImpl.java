@@ -36,7 +36,7 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
     public MilkSchedule update(int id, MilkSchedule milkSchedule) throws ResponseException {
         MilkSchedule fromDb = milkScheduleRepository
                 .findById(id)
-                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Id not found to update milk-schedule data"));
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Id not found to update milk-schedule data"));
         fromDb.setCalculated(milkSchedule.isCalculated());
         fromDb.setShift(milkSchedule.getShift());
         fromDb.setCountKiloGram(milkSchedule.getCountKiloGram());
@@ -65,20 +65,18 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
     public List<MilkSchedule> getByFarmerIdAndDate(int farmerId, long start, long end) throws ResponseException {
         return milkScheduleRepository
                 .getAllByFarmerIdAndDateBetween(farmerId, start, end)
-                .orElseThrow(()-> new ResponseException(HttpStatus.NOT_FOUND,"Farmer_id or Date not found to  get milk schedule data"));
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Farmer_id or Date not found to  get milk schedule data"));
     }
 
     @Override
     public Map<String, Object> getToCountData(ToCountDataDto toCountDataDto) throws ResponseException {
         Map<String, Object> data = new HashMap<>();
         List<MilkSchedule> milkList = getByFarmerIdAndDate(toCountDataDto.getFarmerId(), toCountDataDto.getStart(), toCountDataDto.getEnd());
-        float sumLitre = sumMilliliter(milkList);
-        float sumKg = sumKilogram(milkList);
-        float amount = sumAmount(milkList);
+
         data.put("milkList", milkList);
-        data.put("sumLitre", sumLitre);
-        data.put("sumKg", sumKg);
-        data.put("amount", amount);
+        data.put("sumLitre", sumMilliliter(milkList));
+        data.put("sumKg", sumKilogram(milkList));
+        data.put("amount", sumAmount(milkList));
         data.put("collectorsByDay", getCollectorsListBeginEnd(milkList));
 
         return data;

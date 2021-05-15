@@ -49,7 +49,7 @@ public class VillageController {
         return ResponseEntity.ok(collectorService.getCollectorsByVillageId(villageId));
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Village> create(@RequestBody Village village) {
         return ResponseEntity.ok(villageService.create(village));
     }

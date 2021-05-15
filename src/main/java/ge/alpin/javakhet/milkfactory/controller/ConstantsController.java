@@ -37,7 +37,7 @@ public class ConstantsController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Constants> create(@RequestBody Constants constants) {
         constantsService.create(constants);
         return ResponseEntity.ok(constantsService.create(constants));

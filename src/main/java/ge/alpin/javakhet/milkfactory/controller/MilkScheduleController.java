@@ -30,7 +30,7 @@ public class MilkScheduleController {
         return ResponseEntity.ok(Shift.values());
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<MilkSchedule> addMilkSchedule(@RequestBody MilkSchedule milkSchedule) {
         return ResponseEntity.ok(milkScheduleService.create(milkSchedule));
     }

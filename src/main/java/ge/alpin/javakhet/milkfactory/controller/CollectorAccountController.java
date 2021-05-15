@@ -39,7 +39,7 @@ public class CollectorAccountController {
         return ResponseEntity.ok(collectorAccountService.update(id, collectorAccount));
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<CollectorAccount> create(@RequestBody CollectorAccount collectorAccount) {
         return ResponseEntity.ok(collectorAccountService.create(collectorAccount));
     }

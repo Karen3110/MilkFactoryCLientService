@@ -34,7 +34,7 @@ public class CollectorController {
         return ResponseEntity.ok(farmerService.getAllByCollectorId(id));
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<Collector> create(@RequestBody Collector collector) {
         return ResponseEntity.ok(collectorService.create(collector));
     }

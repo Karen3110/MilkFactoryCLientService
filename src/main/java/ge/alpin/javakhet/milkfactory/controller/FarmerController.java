@@ -31,8 +31,8 @@ public class FarmerController {
         return ResponseEntity.ok(new PageResponse<>(farmerService.getAll(pageable)));
     }
 
-    @GetMapping("/{phone}/phone")
-    public ResponseEntity<Farmer> getFarmerByPhone(@PathVariable("phone") String phone) throws ResponseException {
+    @GetMapping("/by-phone")
+    public ResponseEntity<Farmer> getFarmerByPhone(@RequestParam("phone") String phone) throws ResponseException {
         return ResponseEntity.ok(farmerService.getFarmerByPhone(phone));
     }
 
