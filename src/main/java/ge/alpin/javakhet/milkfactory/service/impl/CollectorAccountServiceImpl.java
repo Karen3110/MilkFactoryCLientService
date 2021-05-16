@@ -31,7 +31,7 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
     public CollectorAccount update(int id, CollectorAccount collectorAccount) throws ResponseException {
         CollectorAccount fromDb = collectorAccountRepository
                 .findById(id)
-                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Id not found for collector-account to update data"));
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Id not found for collector-account to update data"));
         fromDb.setLogin(collectorAccount.getLogin());
         fromDb.setPassword(collectorAccount.getPassword());
         return fromDb;
@@ -41,7 +41,7 @@ public class CollectorAccountServiceImpl implements CollectorAccountService {
     public CollectorAccount getById(int id) throws ResponseException {
         return collectorAccountRepository
                 .findById(id)
-                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Id not found to get collector-account"));
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Id not found to get collector-account"));
     }
 
     @Override

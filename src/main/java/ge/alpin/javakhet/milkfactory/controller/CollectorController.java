@@ -34,6 +34,11 @@ public class CollectorController {
         return ResponseEntity.ok(farmerService.getAllByCollectorId(id));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Collector> getById(@PathVariable int id) throws ResponseException {
+        return ResponseEntity.ok(collectorService.getById(id));
+    }
+
     @PostMapping
     public ResponseEntity<Collector> create(@RequestBody Collector collector) {
         return ResponseEntity.ok(collectorService.create(collector));
@@ -50,9 +55,5 @@ public class CollectorController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Collector> getById(@PathVariable int id) throws ResponseException {
-        return ResponseEntity.ok(collectorService.getById(id));
-    }
 
 }

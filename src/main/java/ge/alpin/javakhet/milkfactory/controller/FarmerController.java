@@ -31,9 +31,15 @@ public class FarmerController {
         return ResponseEntity.ok(new PageResponse<>(farmerService.getAll(pageable)));
     }
 
-    @GetMapping("/by-phone")
-    public ResponseEntity<Farmer> getFarmerByPhone(@RequestParam("phone") String phone) throws ResponseException {
-        return ResponseEntity.ok(farmerService.getFarmerByPhone(phone));
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Farmer> getById(@PathVariable int id) throws ResponseException {
+        return ResponseEntity.ok(farmerService.getById(id));
+    }
+
+    @PostMapping
+    private ResponseEntity<Farmer> create(@RequestBody Farmer farmer) {
+        return ResponseEntity.ok(farmerService.create(farmer));
     }
 
     @PostMapping("/milk-schedule")
@@ -52,14 +58,5 @@ public class FarmerController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Farmer> getById(@PathVariable int id) throws ResponseException {
-        return ResponseEntity.ok(farmerService.getById(id));
-    }
-
-    @PostMapping("/add")
-    private ResponseEntity<Farmer> create(@RequestBody Farmer farmer) {
-        return ResponseEntity.ok(farmerService.create(farmer));
-    }
 
 }

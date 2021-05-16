@@ -23,6 +23,7 @@ public class CollectorAccountController {
     public ResponseEntity<List<CollectorAccount>> getAll(@PageableDefault Pageable pageable) {
         return ResponseEntity.ok(collectorAccountService.getAll(pageable));
     }
+
     @PostMapping("/login")
     public ResponseEntity<CollectorAccount> signIn(@RequestBody SignInDto signInDto) throws ResponseException {
         return ResponseEntity.ok(collectorAccountService.signIn(signInDto));

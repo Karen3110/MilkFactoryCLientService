@@ -31,18 +31,18 @@ public class MilkScheduleController {
     }
 
     @PostMapping
-    public ResponseEntity<MilkSchedule> addMilkSchedule(@RequestBody MilkSchedule milkSchedule) {
+    public ResponseEntity<MilkSchedule> create(@RequestBody MilkSchedule milkSchedule) {
         return ResponseEntity.ok(milkScheduleService.create(milkSchedule));
     }
 
     //  edited row on table
     @PutMapping("/{id}")
-    public ResponseEntity<MilkSchedule> saveEditedData(@PathVariable int id, @RequestBody MilkSchedule milkSchedule) throws ResponseException {
+    public ResponseEntity<MilkSchedule> update(@PathVariable int id, @RequestBody MilkSchedule milkSchedule) throws ResponseException {
         return ResponseEntity.ok(milkScheduleService.update(id, milkSchedule));
     }
 
     @PatchMapping("/do-calculate/{calculate}")
-    public ResponseEntity<Void> calculateData(@PathVariable boolean calculate, @RequestBody ToCountDataDto countDataDto) {
+    public ResponseEntity<Void> calculate(@PathVariable boolean calculate, @RequestBody ToCountDataDto countDataDto) {
         milkScheduleService.calculateMilkBeginEnd(calculate, countDataDto.getFarmerId(), countDataDto.getStart(), countDataDto.getEnd());
         return ResponseEntity.ok().build();
     }

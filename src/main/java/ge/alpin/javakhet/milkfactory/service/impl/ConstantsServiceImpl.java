@@ -55,7 +55,7 @@ public class ConstantsServiceImpl implements ConstantsService {
     public Constants update(int id, Constants constants) throws ResponseException {
         Constants fromDb = constantsRepository
                 .findById(id)
-                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Id not found to update constant's data"));
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Id not found to update constant's data"));
         fromDb.setName(constants.getName());
         fromDb.setValue(constants.getValue());
         return fromDb;

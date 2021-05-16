@@ -22,7 +22,7 @@ public class ConstantsController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<Constants> getConstantByName(@PathVariable String name) throws ResponseException {
+    public ResponseEntity<Constants> getByName(@PathVariable String name) throws ResponseException {
         return ResponseEntity.ok(constantsService.getByName(name));
     }
 

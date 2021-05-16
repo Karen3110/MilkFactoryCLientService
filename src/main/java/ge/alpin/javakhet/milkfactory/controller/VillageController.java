@@ -35,7 +35,7 @@ public class VillageController {
     }
 
     @GetMapping("/{id}/farmers")
-    public ResponseEntity<List<Farmer>> getFarmersByVillage(@PathVariable("id") int villageId) throws ResponseException {
+    public ResponseEntity<List<Farmer>> getFarmersByVillageId(@PathVariable("id") int villageId) throws ResponseException {
         return ResponseEntity.ok(farmerService.getByVillageId(villageId));
     }
 
@@ -45,7 +45,7 @@ public class VillageController {
     }
 
     @GetMapping("/{id}/collectors")
-    public ResponseEntity<List<Collector>> getCollectorsByVillage(@PathVariable("id") int villageId) throws ResponseException {
+    public ResponseEntity<List<Collector>> getCollectorsByVillageId(@PathVariable("id") int villageId) throws ResponseException {
         return ResponseEntity.ok(collectorService.getCollectorsByVillageId(villageId));
     }
 
@@ -54,14 +54,14 @@ public class VillageController {
         return ResponseEntity.ok(villageService.create(village));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Village> update(@PathVariable int id, @RequestBody Village village) throws ResponseException {
+        return ResponseEntity.ok(villageService.update(id, village));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") int villageId) {
         villageService.delete(villageId);
         return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Village> update(@PathVariable int id, @RequestBody Village village) throws ResponseException {
-        return ResponseEntity.ok(villageService.update(id, village));
     }
 }

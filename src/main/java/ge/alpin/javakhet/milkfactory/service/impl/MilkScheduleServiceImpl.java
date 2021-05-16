@@ -39,8 +39,8 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
                 .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Id not found to update milk-schedule data"));
         fromDb.setCalculated(milkSchedule.isCalculated());
         fromDb.setShift(milkSchedule.getShift());
-        fromDb.setCountKiloGram(milkSchedule.getCountKiloGram());
-        fromDb.setCountMilliLiter(milkSchedule.getCountMilliLiter());
+        fromDb.setCountKilogram(milkSchedule.getCountKilogram());
+        fromDb.setCountMilliliter(milkSchedule.getCountMilliliter());
 
         return fromDb;
     }
@@ -88,7 +88,7 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
 
         for (MilkSchedule item :
                 data) {
-            sum += item.getCountMilliLiter();
+            sum += item.getCountMilliliter();
         }
         return sum;
     }
@@ -99,7 +99,7 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
 
         for (MilkSchedule item :
                 data) {
-            sum += item.getCountKiloGram();
+            sum += item.getCountKilogram();
         }
         return sum;
     }
@@ -110,7 +110,7 @@ public class MilkScheduleServiceImpl implements MilkScheduleService {
 
         for (MilkSchedule item :
                 data) {
-            sum += item.getCountMilliLiter() * item.getPrice();
+            sum += item.getCountMilliliter() * item.getPrice();
         }
         return sum;
     }

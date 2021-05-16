@@ -21,9 +21,9 @@ public class MilkSchedule {
 
     private int collectorId;
 
-    private float countMilliLiter;
+    private float countMilliliter;
 
-    private float countKiloGram;
+    private float countKilogram;
 
     private float price;
 

@@ -48,7 +48,7 @@ public class VillageServiceImpl implements VillageService {
     public Village getById(int id) throws ResponseException {
         return villageRepository
                 .findById(id)
-                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND,"Village_id not found to get village"));
+                .orElseThrow(() -> new ResponseException(HttpStatus.NOT_FOUND, "Village_id not found to get village"));
     }
 
 
